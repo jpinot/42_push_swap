@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_num.c                                    :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/26 17:22:44 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/02/26 17:38:29 by jpinyot          ###   ########.fr       */
+/*   Created: 2018/02/27 16:24:16 by jpinyot           #+#    #+#             */
+/*   Updated: 2018/03/01 17:44:20 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libswap.h"
 
-t_num	*ft_lstnew_num(int num, int g)
+int	push_swap(t_num *bgn, t_num *end, int size)
 {
-	t_num *list;
+	t_stack	*s_a;
 
-	if (!(list = (t_num *)malloc(sizeof(t_num))))
-		return (NULL);
-	if (!(list->num = (int)malloc(sizeof(int)))
-		return (NULL);
-	list->g = g;
-	list->num = num;
-	list->next = NULL;
-	return (list);
+	s_a = ft_stacknew(bgn);
+	size = 0;
+	return (0);
 }
