@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:07 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/03/01 17:44:23 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/03/01 18:52:42 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,18 @@ static t_stack	*ft_allocate_stack(t_num *n)
 static t_stack	*ft_getpos(t_stack *s_a)
 {
 	t_num	*sort;
-	t_num	*n;
+	t_num	*tmp;
+	int		i;
 
-	n = s_a->bgn;
 	sort = ft_sort(s_a->bgn);
+	i = 0;
 	while (sort)
 	{
-
+		tmp = s_a->bgn;
+		while (sort != tmp && sort != NULL)
+			tmp = tmp->next;
+		tmp->pos = i;
+		i++;
 	}
 	return (s_a);
 }
@@ -54,13 +59,9 @@ t_stack			*ft_stacknew(t_num *n)
 {
 	t_stack	*s_a;
 	t_stack *s_b;
-	t_num	*sort;
 
 	s_a = ft_allocate_stack(n);
 	s_b = s_a->s_b;
 	s_a = ft_getpos(s_a);
-//	sort = ft_sort(n);
-//	s_a->ref = sort;
-//	s_b->ref = sort;
 	return (s_a);
 }

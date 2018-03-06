@@ -6,7 +6,7 @@
 #    By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/14 22:43:59 by jpinyot           #+#    #+#              #
-#    Updated: 2018/03/01 17:36:36 by jpinyot          ###   ########.fr        #
+#    Updated: 2018/03/01 18:51:40 by jpinyot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC = main.c\
 
 FUNC = ft_sort.c\
 	   ft_lstnew_num.c\
+	   ft_stacknew.c\
 
 OBJ_SRC = $(patsubst %.c, $(SRC_DIR)%.o, $(SRC))
 

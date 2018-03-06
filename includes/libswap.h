@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 19:15:07 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/03/01 17:44:17 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/03/01 18:40:03 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ typedef struct	s_stack
 
 t_num		*ft_sort(t_num *num);
 t_num		*ft_lstnew_num(int num, t_num *p);
-int			push_swap(t_num *bgn, t_num *end, int size);
+int			push_swap(t_num *bgn);
 t_stack		*ft_stacknew(t_num *n);
 #endif

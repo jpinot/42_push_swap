@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 19:01:53 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/03/02 16:20:29 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/03/02 16:11:43 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,23 @@ static t_num	*ft_move(t_num **num)
 	t_num	*tmp;
 	t_num	*rtn;
 	t_num	*mv;
-	int		w;
 
 	mv = *num;
-	rtn = mv;
+	rtn = mv->prev;
 	tmp = mv->prev;
+	tmp->next = NULL;
 	while (tmp != NULL)
 	{
-		if (tmp->prev->num < mv->num)
+		if (tmp->num < mv->num)
+		{
+			mv->next = tmp->next;
+			mv->prev = tmp;
+			tmp->next = mv;
+			tmp = mv->next;
+			tmp->prev = mv;
 			break ;
+		}
 		tmp = tmp->prev;
-	}
-	while (tmp->next != NULL)
-	{
-		w = tmp->num;
-		tmp->num = mv->num;
-		mv->num = w;
-		tmp = tmp->next;
 	}
 	return (rtn);
 }
@@ -51,18 +51,14 @@ t_num	*ft_sort(t_num *num)
 	rtn = arr;
 	while (tmp != NULL)
 	{
-		if (!(arr->next = ft_lstnew_num(tmp->next->num, tmp)))
-		{
-			write(1, "*", 1);
-			return (NULL);
-		}
+		arr->next = ft_lstnew_num(tmp->next->num, tmp);
+		write(1, "#", 1);
 		if (arr->num > arr->next->num)
-		{
 			arr = ft_move(&(arr->next));
-			write(1, "&", 1);
-		}
-		arr = arr->next;
+		else
+			arr = arr->next;
 		tmp = tmp->next;
 	}
+		write(1, "&", 1);
 	return (rtn);
 }
