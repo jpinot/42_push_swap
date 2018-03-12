@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 19:47:23 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/03/01 19:31:14 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/03/12 19:44:16 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int		main(int ac, char **av)
 		num = num->next;
 	}
 	t_num *b = ft_sort(bgn);
+//	ft_sort(bgn);
 	i = 0;
 	while (b != NULL)
 	{
@@ -51,5 +52,6 @@ int		main(int ac, char **av)
 	ft_putnbr(i);
 		write (1, "|", 1);
 		write (1, "\n", 1);
+	return (0);
 	return (push_swap(bgn));
 }
