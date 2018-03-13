@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 19:15:07 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/03/01 18:40:03 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/03/13 09:45:59 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ typedef struct	s_num
 {
 	int				num;
 	int				g;
-	int				stock;
-	int				pos;
+	int				p;
 	struct s_num	*next;
 	struct s_num	*prev;
 }				t_num;

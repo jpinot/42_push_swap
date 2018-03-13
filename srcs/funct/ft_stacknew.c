@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:07 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/03/12 19:40:28 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/03/13 11:21:23 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,31 @@ static t_stack	*ft_allocate_stack(t_num *n)
 
 static t_stack	*ft_getpos(t_stack *s_a)
 {
+	int		p;
+	int		g;
 	t_num	*sort;
 	t_num	*tmp;
-	int		i;
+	t_num	*bgn;
 
-	sort = ft_sort(s_a->bgn);
-	i = 0;
-	while (sort)
+	bgn = s_a->bgn;
+	if (!(sort = ft_sort(bgn)))
+		return (NULL);
+	p = 0;
+	g = 0;
+	while (sort != NULL)
 	{
-		tmp = s_a->bgn;
-		while (sort != tmp && sort != NULL)
+		tmp = bgn;
+		while (sort->num != tmp->num)
 			tmp = tmp->next;
-		tmp->pos = i;
-		i++;
+		tmp->p = p;
+		tmp->g = g;
+		p++;
+		if (p == 4)
+		{
+			g++;
+			p = 0;
+		}
+		sort = sort->next;
 	}
 	return (s_a);
 }
@@ -60,8 +72,18 @@ t_stack			*ft_stacknew(t_num *n)
 	t_stack	*s_a;
 	t_stack *s_b;
 
-	s_a = ft_allocate_stack(n);
+	if (!(s_a = ft_allocate_stack(n)))
+		return (NULL);
 	s_b = s_a->s_b;
-	s_a = ft_getpos(s_a);
+	if (!(s_a = ft_getpos(s_a)))
+		return (NULL);
+//	while (s_a->bgn != NULL)
+//	{
+//		ft_putnbr(s_a->bgn->g);
+//		write(1, " ", 1);
+//		ft_putnbr(s_a->bgn->p);
+//		write(1, "\n", 1);
+//		s_a->bgn = s_a->bgn->next;
+//	}
 	return (s_a);
 }

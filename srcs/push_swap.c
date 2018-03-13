@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 16:24:16 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/03/12 19:39:53 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/03/13 11:21:53 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	push_swap(t_num *bgn)
 {
 	t_stack	*s_a;
 
-	s_a = ft_stacknew(bgn);
+	if (!(s_a = ft_stacknew(bgn)))
+		return (-1);
 	return (0);
 }
