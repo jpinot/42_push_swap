@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:07 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/03/13 11:21:23 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/03/19 18:51:51 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static t_stack	*ft_allocate_stack(t_num *n)
 		return (NULL);
 	s_b->bgn = NULL;
 	s_b->end = NULL;
-	s_b->scnd = NULL;
 	s_b->s_b = NULL;
 	s_a->s_b = s_b;
 	s_a->bgn = n;
@@ -32,7 +31,6 @@ static t_stack	*ft_allocate_stack(t_num *n)
 	while (tmp->next != NULL)
 		tmp = tmp->next;
 	s_a->end = tmp;
-	s_a->scnd = tmp->prev;
 	return (s_a);
 }
 
@@ -40,6 +38,7 @@ static t_stack	*ft_getpos(t_stack *s_a)
 {
 	int		p;
 	int		g;
+	int		pos;
 	t_num	*sort;
 	t_num	*tmp;
 	t_num	*bgn;
@@ -49,6 +48,7 @@ static t_stack	*ft_getpos(t_stack *s_a)
 		return (NULL);
 	p = 0;
 	g = 0;
+	pos = 0;
 	while (sort != NULL)
 	{
 		tmp = bgn;
@@ -56,7 +56,10 @@ static t_stack	*ft_getpos(t_stack *s_a)
 			tmp = tmp->next;
 		tmp->p = p;
 		tmp->g = g;
+		tmp->pos = pos;
 		p++;
+		pos++;
+		s_a->l_g = g + 1;
 		if (p == 4)
 		{
 			g++;
@@ -64,6 +67,7 @@ static t_stack	*ft_getpos(t_stack *s_a)
 		}
 		sort = sort->next;
 	}
+	s_a->l = pos;
 	return (s_a);
 }
 
@@ -77,11 +81,15 @@ t_stack			*ft_stacknew(t_num *n)
 	s_b = s_a->s_b;
 	if (!(s_a = ft_getpos(s_a)))
 		return (NULL);
+	s_a->s_b->l = s_a->l;
+	s_a->s_b->l_g = s_a->l_g;
 //	while (s_a->bgn != NULL)
 //	{
 //		ft_putnbr(s_a->bgn->g);
 //		write(1, " ", 1);
 //		ft_putnbr(s_a->bgn->p);
+//		write(1, " ", 1);
+//		ft_putnbr(s_a->bgn->pos);
 //		write(1, "\n", 1);
 //		s_a->bgn = s_a->bgn->next;
 //	}
