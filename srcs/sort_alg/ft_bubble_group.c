@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 16:35:25 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/03/19 20:54:27 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/03/20 12:04:02 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_ret	ft_bubble_group(t_num *bgn)
 	a = ft_stacknew(bgn);
 	p = 0;
 	g = 0;
-	ft_putnbr(a->l_g);
+//	ft_putnbr(a->l_g);
 	while (g < (a->l_g - 1))
 	{
 		if (ft_check_side_g(a, g) == 1)
@@ -42,7 +42,7 @@ t_ret	ft_bubble_group(t_num *bgn)
 		}
 		ft_pb(a, a->s_b, res);
 		p++;
-		if ( p == 4)
+		if ( p == 3)
 		{
 			g += 1;
 			p = 0;
@@ -50,8 +50,8 @@ t_ret	ft_bubble_group(t_num *bgn)
 	}
 //	a = ft_sa(a, res);
 //	write(1, "$", 1);
-	ft_group_one_sort(a, a->s_b, res);
-//	ft_group_sort(a, a->s_b, res);
+	ft_group_one_sort(a, res);
+	ft_group_sort(a, a->s_b, res);
 //	while (p < a->l - 1)
 //	{
 //		ft_pa(a, a->s_b, res);

@@ -37,6 +37,6 @@ t_stack	*ft_sb(t_stack *b, t_ret ret)
 	d = ret.tp;
 	ret.tp = ft_strjoin(ret.tp, " sb");
 	ret.mov += 1;
-	ft_strdel(&d);
+//	ft_strdel(&d);
 	return (b);
 }
