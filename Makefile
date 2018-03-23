@@ -6,13 +6,13 @@
 #    By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/14 22:43:59 by jpinyot           #+#    #+#              #
-#    Updated: 2018/03/19 20:08:37 by jpinyot          ###   ########.fr        #
+#    Updated: 2018/03/23 13:19:07 by jpinyot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME_SWAP = push_swap
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS =
 
 SRC_DIR = srcs/
 
@@ -30,6 +30,8 @@ FUNC = ft_sort.c\
 	   ft_stacknew.c\
 	   ft_check_side.c\
 	   ft_group_one_sort.c\
+	   ft_group_sort.c\
+	   ft_merge_func.c\
 
 CMND = ft_ss.c\
 	  ft_swap.c\
@@ -39,6 +41,7 @@ CMND = ft_ss.c\
 
 SRT_ALG = ft_bubble_one.c\
 		  ft_bubble_group.c\
+		  ft_merge_one.c\
 
 OBJ_SRC = $(patsubst %.c, $(SRC_DIR)%.o, $(SRC))
 

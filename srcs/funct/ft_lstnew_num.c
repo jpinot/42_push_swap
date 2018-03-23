@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 17:22:44 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/03/13 10:01:21 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/03/23 11:28:59 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_num	*ft_lstnew_num(int num, t_num *p)
 	list->g = -1;
 	list->p = -1;
 	list->pos = -1;
+	list->m = -1;
 	list->next = NULL;
 	return (list);
 }

@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 19:15:07 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/03/19 20:54:32 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/03/23 14:45:55 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct	s_num
 	int				g;
 	int				p;
 	int				pos;
+	int				m;
 	struct s_num	*next;
 	struct s_num	*prev;
 }				t_num;
@@ -48,10 +49,16 @@ int			ft_check_side(t_stack *s, int pos);
 int			ft_check_side_g(t_stack *s, int g);
 int			ft_check_state(t_stack *s_a);
 
-t_stack *ft_group_one_sort(t_stack *a, t_stack *b, t_ret ret);
+t_stack *ft_group_one_sort(t_stack *a, t_ret ret);
+t_stack *ft_group_sort(t_stack *a, t_stack *b, t_ret ret);
+
+
+t_stack *ft_sort_top(t_stack *a, t_stack *b, t_ret ret, int m);
+int  ft_check_m(t_stack *a);
 
 t_ret	ft_bubble_one(t_num *bgn);
 t_ret	ft_bubble_group(t_num *bgn);
+t_ret   ft_merge_one(t_num *bgn);
 
 t_stack         *ft_rrb(t_stack *b, t_ret ret);
 t_stack         *ft_rra(t_stack *a, t_ret ret);
