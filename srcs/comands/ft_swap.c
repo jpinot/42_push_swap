@@ -1,7 +1,7 @@
 
 #include "libswap.h"
 
-t_stack	*ft_sa(t_stack *a, t_ret ret)
+t_stack	*ft_sa(t_stack *a, t_ret *ret)
 {
 	t_num *tmp;
 	char *d;
@@ -15,14 +15,14 @@ t_stack	*ft_sa(t_stack *a, t_ret ret)
 	a->bgn = tmp;
 
 
-	d = ret.tp;
-	ret.tp = ft_strjoin(ret.tp, " sa");
-	ret.mov += 1;
+	d = ret->tp;
+	ret->tp = ft_strjoin(ret->tp, " sa");
+	ret->mov += 1;
 //	ft_strdel(&d);
 	return (a);
 }
 
-t_stack	*ft_sb(t_stack *b, t_ret ret)
+t_stack	*ft_sb(t_stack *b, t_ret *ret)
 {
 	t_num *tmp;
 	char *d;
@@ -34,9 +34,9 @@ t_stack	*ft_sb(t_stack *b, t_ret ret)
 	tmp->prev = NULL;
 //	write(1, "$", 1);
 	b->bgn = tmp;
-	d = ret.tp;
-	ret.tp = ft_strjoin(ret.tp, " sb");
-	ret.mov += 1;
+	d = ret->tp;
+	ret->tp = ft_strjoin(ret->tp, " sb");
+	ret->mov += 1;
 //	ft_strdel(&d);
 	return (b);
 }

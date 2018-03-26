@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+	/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
@@ -15,12 +15,15 @@
 int	push_swap(t_num *bgn)
 {
 //	t_ret	op1;
-	t_ret	op2;
+	t_ret	*op;
 
 //	if (!(s_a = ft_stacknew(bgn)))
 //		return (-1);
-//	op1 = ft_bubble_one(bgn);
-//	op2 = ft_bubble_group(bgn);
-	op2 = ft_merge_one(bgn);
+//	op = ft_bubble_one(bgn);
+//	op = ft_bubble_group(bgn);
+	op = ft_merge_one(bgn);
+//	op = ft_merge_group(bgn);
+	write(1, " ", 1);
+	ft_putnbr(op->mov);
 	return (0);
 }

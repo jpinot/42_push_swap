@@ -43,7 +43,7 @@ static t_stack  *ft_push_nn(t_stack *a, t_stack *b)
 }
 
 
-t_stack *ft_pb(t_stack *a, t_stack *b, t_ret ret)
+t_stack *ft_pb(t_stack *a, t_stack *b, t_ret *ret)
 {
 	char	*del;
 
@@ -53,14 +53,14 @@ t_stack *ft_pb(t_stack *a, t_stack *b, t_ret ret)
 		ft_push(a, b);
 	else
 		ft_push_null(a, b);
-	del = ret.tp;
-	ret.tp = ft_strjoin(ret.tp, " pb");
-	ret.mov += 1;
+	del = ret->tp;
+	ret->tp = ft_strjoin(ret->tp, " pb");
+	ret->mov += 1;
 //	ft_strdel(&del);
 	return (a);
 }
 
-t_stack	*ft_pa(t_stack *a, t_stack *b, t_ret ret)
+t_stack	*ft_pa(t_stack *a, t_stack *b, t_ret *ret)
 {
 	char	*del;
 
@@ -70,9 +70,9 @@ t_stack	*ft_pa(t_stack *a, t_stack *b, t_ret ret)
 		ft_push(b, a);
 	else
 		ft_push_null(b, a);
-	del = ret.tp;
-	ret.tp = ft_strjoin(ret.tp, " pa");
-	ret.mov += 1;
+	del = ret->tp;
+	ret->tp = ft_strjoin(ret->tp, " pa");
+	ret->mov += 1;
 //	ft_strdel(&del);
 	
 	return (a);

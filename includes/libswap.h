@@ -39,33 +39,45 @@ typedef struct	s_ret
 	int		mov;
 	int		sort;
 	char		*tp;
+	struct s_ret	*next;
 }			t_ret;
 
 t_num		*ft_sort(t_num *num);
 t_num		*ft_lstnew_num(int num, t_num *p);
+t_ret   *ft_ret_new(int sort);
 int			push_swap(t_num *bgn);
 t_stack		*ft_stacknew(t_num *n);
 int			ft_check_side(t_stack *s, int pos);	
 int			ft_check_side_g(t_stack *s, int g);
 int			ft_check_state(t_stack *s_a);
 
-t_stack *ft_group_one_sort(t_stack *a, t_ret ret);
-t_stack *ft_group_sort(t_stack *a, t_stack *b, t_ret ret);
+t_stack *ft_group_one_sort(t_stack *a, t_ret *ret);
+t_stack *ft_group_sort(t_stack *a, t_stack *b, t_ret *ret);
 
-
-t_stack *ft_sort_top(t_stack *a, t_stack *b, t_ret ret, int m);
+t_stack *ft_sort_top_a(t_stack *a, t_ret *ret, int pos);
+t_stack *ft_sort_top_b(t_stack *a, t_stack *b, t_ret *ret, int m);
+t_stack *ft_sort_g_top_a(t_stack *a, t_ret *ret, int pos);
+t_stack *ft_sort_g_top_b(t_stack *a, t_stack *b, t_ret *ret, int pos);
 int  ft_check_m(t_stack *a);
+int     ft_non_minor_pos(t_stack *a, int pos);
+int     ft_non_major_pos(t_stack *a, int pos);
 
-t_ret	ft_bubble_one(t_num *bgn);
-t_ret	ft_bubble_group(t_num *bgn);
-t_ret   ft_merge_one(t_num *bgn);
+t_ret	*ft_bubble_one(t_num *bgn);
+t_ret	*ft_bubble_group(t_num *bgn);
+t_ret   *ft_merge_one(t_num *bgn);
+t_ret   *ft_merge_group(t_num *bgn);
 
-t_stack         *ft_rrb(t_stack *b, t_ret ret);
-t_stack         *ft_rra(t_stack *a, t_ret ret);
-t_stack         *ft_ra(t_stack *a, t_ret ret);
-t_stack         *ft_rb(t_stack *b, t_ret ret);
-t_stack		*ft_pa(t_stack *a, t_stack *b, t_ret ret);
-t_stack		*ft_pb(t_stack *a, t_stack *b, t_ret ret);
-t_stack		*ft_sa(t_stack *a, t_ret res);
-t_stack		*ft_sb(t_stack *b, t_ret res);
+int     ft_is_sort(t_stack *a, int p);
+
+t_stack         *ft_rrb(t_stack *b, t_ret *ret);
+t_stack         *ft_rra(t_stack *a, t_ret *ret);
+t_stack         *ft_ra(t_stack *a, t_ret *ret);
+t_stack         *ft_rb(t_stack *b, t_ret *ret);
+t_stack		*ft_pa(t_stack *a, t_stack *b, t_ret *ret);
+t_stack		*ft_pb(t_stack *a, t_stack *b, t_ret *ret);
+t_stack		*ft_sa(t_stack *a, t_ret *res);
+t_stack		*ft_sb(t_stack *b, t_ret *res);
+t_stack *ft_ss(t_stack *a, t_ret *ret);
+t_stack *ft_rr(t_stack *a, t_ret *ret);
+t_stack *ft_rrr(t_stack *a, t_ret *ret);
 #endif

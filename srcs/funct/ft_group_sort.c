@@ -12,7 +12,7 @@
 
 #include "libswap.h"
 
-t_stack	*ft_group_sort(t_stack *a, t_stack *b, t_ret ret)
+t_stack	*ft_group_sort(t_stack *a, t_stack *b, t_ret *ret)
 {
 	int g;
 	int p;

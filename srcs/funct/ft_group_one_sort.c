@@ -12,14 +12,14 @@
 
 #include "libswap.h"
 
-static t_stack	*ft_two_num(t_stack *a, t_ret ret)
+static t_stack	*ft_two_num(t_stack *a, t_ret *ret)
 {
 	if (a->bgn->p > a->end->p)
 		ft_sa(a, ret);
 	return (a);
 }
 
-static t_stack	*ft_three_num(t_stack *a, t_ret ret)
+static t_stack	*ft_three_num(t_stack *a, t_ret *ret)
 {
 	if (a->bgn->p > a->bgn->next->p && a->bgn->p > a->end->p)
 	   ft_ra(a, ret);	
@@ -35,7 +35,7 @@ static t_stack	*ft_three_num(t_stack *a, t_ret ret)
 	return (a);
 }
 
-t_stack	*ft_group_one_sort(t_stack *a, t_ret ret)
+t_stack	*ft_group_one_sort(t_stack *a, t_ret *ret)
 {
 	if (a->bgn->next == NULL)
 		return (a);

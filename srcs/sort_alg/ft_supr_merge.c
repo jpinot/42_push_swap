@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 12:07:08 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/03/26 19:34:37 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/03/26 19:34:40 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,42 +24,6 @@ static int ft_check_pos(t_num *a, int p)
 		tmp = tmp->next;
 	}
 	return (1);
-}
-
-int	ft_is_sort(t_stack *a, int p)
-{
-	t_num	*tmp;
-	int		cnt;
-
-	tmp = a->bgn;
-	cnt = 0;
-	if (p == a->l -1)
-	{
-		while (tmp->next)
-		{
-			if (tmp->pos != (tmp->next->pos - 1))
-				return (0);
-			if (tmp->pos == p || tmp->next->pos == p)
-				cnt++;
-			tmp = tmp->next;
-		}
-	}
-	else
-	{
-		while (tmp->pos != a->l - 1)
-		{
-			if (tmp->pos != (tmp->next->pos - 1))
-				return (0);
-			if (tmp->pos == p || tmp->next->pos == p)
-				cnt++;
-			tmp = tmp->next;
-		}
-		write(1, "*", 1); 
-		ft_putnbr(p);
-	}
-	if (cnt > 0)
-		return (1);
-	return (0);
 }
 
 static int	ft_merge_a_bgn(t_stack *a, t_ret *ret, int p)
@@ -113,13 +77,13 @@ static int	ft_merge_a(t_stack *a, t_ret *ret, int p)
 	}
 	pos = (p + 1) - tmp;
 	i = a->s_b->bgn->m + 1;
-	ft_putnbr(pos);
 	while (a->bgn->next != NULL)
 	{
 		if (ft_is_sort(a, p))
 			break;
 		if (ft_non_minor_pos(a, pos))
 		{
+			write(1, "%", 1);
 			if (a->end->m != -1)
 				while(a->end->m != -1)
 					ft_rra(a, ret);
@@ -139,7 +103,7 @@ static int	ft_merge_a(t_stack *a, t_ret *ret, int p)
 	{
 		while(a->end->m != -1)
 			ft_rra(a, ret);
-		return (ft_merge_a(a, ret, p - 1));
+		return (ft_merge_a(a, ret, p));
 	}
 	return (a->bgn->pos - 1);
 }
@@ -164,7 +128,9 @@ static int	ft_merge_b(t_stack *a, t_ret *ret, int p)
 		{
 			if (a->s_b->bgn->pos < pos)
 				ft_rb(a->s_b, ret);
-			else
+			if (a->s_b->bgn->pos >= pos && a->s_b->bgn->next->pos > a->s_b->bgn->pos)
+				ft_sb(a->s_b, ret);
+			if (a->s_b->bgn->pos >= pos && a->s_b->bgn->next->pos < a->s_b->bgn->pos)
 			{
 				ft_pa(a, a->s_b, ret);
 				i--;
@@ -187,28 +153,17 @@ t_ret	*ft_merge_one(t_num *bgn)
 	ret = ft_ret_new(3);
 	a = ft_stacknew(bgn);
 	p = ft_merge_a_bgn(a,ret, a->l - 1);
-//	p = ft_merge_b(a, ret, p);
-//	p = ft_merge_a(a, ret, p);
-//	p = ft_merge_b(a, ret, p);
 
-	int i = 1;
 	while (a->s_b->bgn)
 	{
-//		ft_putnbr(i);
-//		write(1, " ", 1);
-		i++;
 		if(a->bgn && a->s_b->bgn)
 			p = ft_merge_b(a, ret, p);
 		if(a->bgn && a->s_b->bgn)
 			p = ft_merge_a(a, ret, p);
 	}
-//	p = ft_merge_b(a, ret, p);
-//	write(1, "&", 1);
-//	p = ft_merge_a(a, ret, p);
-
-//	ft_putstr(ret->tp);
-//	write(1, "\n", 1);
-//	ft_putnbr(ret->mov);
+	ft_putstr(ret->tp);
+	write(1, "\n", 1);
+	ft_putnbr(ret->mov);
 //	a = ft_sa(a, res);
 //	write(1, "$", 1);
 //	ft_group_sort(a, a->s_b, res);
@@ -217,29 +172,29 @@ t_ret	*ft_merge_one(t_num *bgn)
 //		ft_pa(a, a->s_b, res);
 //		p++;
 //	}
-	while (a->s_b->bgn)
-	{
-		write(1, "\n", 1);
-		ft_putnbr(a->s_b->bgn->num);
-		write(1, " ", 1);
-		ft_putnbr(a->s_b->bgn->pos);
-		write(1, " ", 1);
-		ft_putnbr(a->s_b->bgn->m);
-		a->s_b->bgn = a->s_b->bgn->next;
-	}
-		write(1, "\n", 1);
-		write(1, "-----------------------------", 10);
-		write(1, "\n", 1);
-	while (a->bgn)
-	{
-		write(1, "\n", 1);
-		ft_putnbr(a->bgn->num);
-		write(1, " ", 1);
-		ft_putnbr(a->bgn->pos);
-		write(1, " ", 1);
-		ft_putnbr(a->bgn->m);
-		a->bgn = a->bgn->next;
-	}
+//	while (a->s_b->bgn)
+//	{
+//		write(1, "\n", 1);
+//		ft_putnbr(a->s_b->bgn->num);
+//		write(1, " ", 1);
+//		ft_putnbr(a->s_b->bgn->pos);
+//		write(1, " ", 1);
+//		ft_putnbr(a->s_b->bgn->m);
+//		a->s_b->bgn = a->s_b->bgn->next;
+//	}
+//		write(1, "\n", 1);
+//		write(1, "----------", 10);
+//		write(1, "\n", 1);
+//	while (a->bgn)
+//	{
+//		write(1, "\n", 1);
+//		ft_putnbr(a->bgn->num);
+//		write(1, " ", 1);
+//		ft_putnbr(a->bgn->pos);
+//		write(1, " ", 1);
+//		ft_putnbr(a->bgn->m);
+//		a->bgn = a->bgn->next;
+//	}
 //	write(1, "\n", 1);
 //	ft_putstr(res.tp);
 	return (ret);

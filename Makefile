@@ -27,21 +27,26 @@ SRC = main.c\
 
 FUNC = ft_sort.c\
 	   ft_lstnew_num.c\
+	   ft_ret_new.c\
 	   ft_stacknew.c\
 	   ft_check_side.c\
 	   ft_group_one_sort.c\
 	   ft_group_sort.c\
 	   ft_merge_func.c\
+	   ft_sort_top.c
 
-CMND = ft_ss.c\
-	  ft_swap.c\
+CMND = 	  ft_swap.c\
 	  ft_push.c\
 	  ft_rotate.c\
 	  ft_rv_rotate.c\
+	  ft_rr.c\
+	  ft_rrr.c\
+	  ft_ss.c\
 
 SRT_ALG = ft_bubble_one.c\
 		  ft_bubble_group.c\
 		  ft_merge_one.c\
+		  ft_merge_group.c\
 
 OBJ_SRC = $(patsubst %.c, $(SRC_DIR)%.o, $(SRC))
 

@@ -12,16 +12,14 @@
 
 #include "libswap.h"
 
-t_ret	ft_bubble_group(t_num *bgn)
+t_ret	*ft_bubble_group(t_num *bgn)
 {
 	int	p;
 	int g;
-	t_ret	res;
+	t_ret	*res;
 	t_stack	*a;
 
-	res.mov = 0;
-	res.tp = (char *)malloc(sizeof(char) * 5);
-	res.tp = ft_strcpy(res.tp, "str:");
+	res = ft_ret_new(3);
 //	if (!(a = ft_stacknew(bgn)))
 //		return (NULL);
 	a = ft_stacknew(bgn);
