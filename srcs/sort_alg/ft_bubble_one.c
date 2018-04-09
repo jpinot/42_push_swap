@@ -6,66 +6,44 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 18:01:14 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/03/19 18:08:20 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/04/09 17:18:22 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libswap.h"
 
-t_ret	*ft_bubble_one(t_num *bgn)
+static t_stack	*ft_b_s(t_stack *a, t_ret *res, int p)
 {
-	int	p;
+	if (ft_check_side(a, p) == 1)
+		while (a->bgn->pos != p)
+			ft_ra(a, res);
+	else
+		while (a->bgn->pos != p)
+			a = ft_rra(a, res);
+	return (a);
+}
+
+t_ret			*ft_bubble_one(t_num *bgn)
+{
+	int		p;
 	t_ret	*res;
 	t_stack	*a;
 
 	res = ft_ret_new(2);
-//	if (!(a = ft_stacknew(bgn)))
-//		return (NULL);
+	if (!(a = ft_stacknew(bgn)))
+		return (NULL);
 	a = ft_stacknew(bgn);
 	p = 0;
-	while (p != a->l -1)
+	while (p != a->l - 1)
 	{
-		if (ft_check_side(a, p) == 1)
-		{
-			while (a->bgn->pos != p)
-				ft_ra(a, res);
-//			ft_putnbr(a->bgn->num);
-//			ft_putnbr(a->bgn->prev->num);
-		}
-		else
-		{
-			while (a->bgn->pos != p)
-			{
-			//	write (1, "$", 1);
-				a = ft_rra(a, res);
-			//	write (1, "%", 1);
-			}
-		}
-//		write (1, "*", 1);
-//		ft_putnbr(a->bgn->num);
-//		write (1, "*", 1);
+		ft_b_s(a, res, p);
 		ft_pb(a, a->s_b, res);
-//		write (1, "(", 1);
-//		ft_putnbr(a->s_b->bgn->num);
-//		write (1, ")", 1);
 		p++;
 	}
 	while (p > 0)
 	{
-//		ft_putnbr(a->s_b->bgn->num);
 		ft_pa(a, a->s_b, res);
 		p--;
 	}
-	while (p < a->l)
-	{
-		write(1, "\n", 1);
-		ft_putnbr(a->bgn->num);
-//		write(1, " ", 1);
-//		ft_putnbr(a->bgn->pos);
-		a->bgn = a->bgn->next;
-		p++;
-	}
-//	write(1, "\n", 1);
-//	ft_putstr(res.tp);
 	return (res);
 }

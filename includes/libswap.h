@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 19:15:07 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/03/23 14:45:55 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/03/28 14:41:49 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ t_ret	*ft_bubble_one(t_num *bgn);
 t_ret	*ft_bubble_group(t_num *bgn);
 t_ret   *ft_merge_one(t_num *bgn);
 t_ret   *ft_merge_group(t_num *bgn);
+t_ret   *ft_s_merge(t_num *bgn);
 
 int     ft_is_sort(t_stack *a, int p);
 
