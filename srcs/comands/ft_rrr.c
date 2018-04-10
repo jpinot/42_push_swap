@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_rrr.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/04/10 16:50:16 by jpinyot           #+#    #+#             */
+/*   Updated: 2018/04/10 16:50:38 by jpinyot          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libswap.h"
 
@@ -15,7 +26,7 @@ static t_stack	*ft_reverse(t_stack *a)
 	return (a);
 }
 
-t_stack		*ft_rrr(t_stack *a, t_ret *ret)
+t_stack			*ft_rrr(t_stack *a, t_ret *ret)
 {
 	char	*del;
 
@@ -24,7 +35,6 @@ t_stack		*ft_rrr(t_stack *a, t_ret *ret)
 	del = ret->tp;
 	ret->tp = ft_strjoin(ret->tp, " rrr");
 	ret->mov += 1;
-//	ft_strdel(&del);
+	ft_strdel(&del);
 	return (a);
 }
-

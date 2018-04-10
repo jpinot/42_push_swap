@@ -1,40 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rr.c                                            :+:      :+:    :+:   */
+/*   ft_lstnew_num.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/10 16:49:04 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/10 17:00:01 by jpinyot          ###   ########.fr       */
+/*   Created: 2018/02/26 17:22:44 by jpinyot           #+#    #+#             */
+/*   Updated: 2018/04/10 18:57:32 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libswap.h"
 
-static t_stack	*ft_rotate(t_stack *a)
+t_num	*ft_lstnew_num(int num, t_num *p)
 {
-	t_num *tmp;
+	t_num *list;
 
-	tmp = a->bgn->next;
-	a->bgn->next = NULL;
-	a->bgn->prev = a->end;
-	a->end->next = a->bgn;
-	a->end = a->bgn;
-	a->bgn = tmp;
-	a->bgn->prev = NULL;
-	return (a);
-}
-
-t_stack			*ft_rr(t_stack *a, t_ret *ret)
-{
-	char *del;
-
-	a = ft_rotate(a);
-	a->s_b = ft_rotate(a->s_b);
-	del = ret->tp;
-	ret->tp = ft_strjoin(ret->tp, " rr");
-	ret->mov += 1;
-	ft_strdel(&del);
-	return (a);
+	if (!(list = (t_num *)malloc(sizeof(t_num))))
+		return (NULL);
+	if (p != NULL)
+		list->prev = p;
+	else
+		list->prev = NULL;
+	list->num = num;
+	list->g = -1;
+	list->p = -1;
+	list->pos = -1;
+	list->m = -1;
+	list->next = NULL;
+	return (list);
 }

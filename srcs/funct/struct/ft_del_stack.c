@@ -1,49 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_side.c                                    :+:      :+:    :+:   */
+/*   ft_del_stack.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/19 17:32:17 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/09 17:11:32 by jpinyot          ###   ########.fr       */
+/*   Created: 2018/04/10 18:32:53 by jpinyot           #+#    #+#             */
+/*   Updated: 2018/04/10 18:39:03 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libswap.h"
 
-int	ft_check_side(t_stack *s, int pos)
+void	ft_del_stack(t_stack **lst)
 {
-	t_num *tmp;
-	int		i;
+	t_stack *b;
+	t_stack *a;
 
-	tmp = s->bgn;
-	i = 0;
-	while (tmp->pos != pos)
-	{
-		tmp = tmp->next;
-		i++;
-	}
-	if (i > (s->l)/2)
-		return (2);
-	else
-		return (1);
-}
-
-int	ft_check_side_g(t_stack *s, int g)
-{
-	t_num *tmp;
-	int		i;
-
-	tmp = s->bgn;
-	i = 0;
-	while (tmp->g != g)
-	{
-		tmp = tmp->next;
-		i++;
-	}
-	if (i > (s->l)/2)
-		return (2);
-	else
-		return (1);
+	a = *lst;
+	b = a->s_b;
+	ft_del_num(&a->bgn);
+	if (b->bgn)
+		ft_del_num(&b->bgn);
+	free(a);
+	free(b);
+	a = NULL;
+	b = NULL;
 }

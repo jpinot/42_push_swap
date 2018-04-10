@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_push.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/04/10 16:43:04 by jpinyot           #+#    #+#             */
+/*   Updated: 2018/04/10 16:47:42 by jpinyot          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libswap.h"
 
@@ -14,7 +25,7 @@ static t_stack	*ft_push(t_stack *a, t_stack *b)
 	return (a);
 }
 
-static t_stack  *ft_push_null(t_stack *a, t_stack *b)
+static t_stack	*ft_push_null(t_stack *a, t_stack *b)
 {
 	t_num	*tmp;
 
@@ -28,22 +39,17 @@ static t_stack  *ft_push_null(t_stack *a, t_stack *b)
 	return (a);
 }
 
-
-static t_stack  *ft_push_nn(t_stack *a, t_stack *b)
+static t_stack	*ft_push_nn(t_stack *a, t_stack *b)
 {
-
 	b->bgn->prev = a->bgn;
 	a->bgn->next = b->bgn;
 	b->bgn = a->bgn;
 	a->bgn = NULL;
 	a->end = NULL;
-	
-
 	return (a);
 }
 
-
-t_stack *ft_pb(t_stack *a, t_stack *b, t_ret *ret)
+t_stack			*ft_pb(t_stack *a, t_stack *b, t_ret *ret)
 {
 	char	*del;
 
@@ -56,11 +62,11 @@ t_stack *ft_pb(t_stack *a, t_stack *b, t_ret *ret)
 	del = ret->tp;
 	ret->tp = ft_strjoin(ret->tp, " pb");
 	ret->mov += 1;
-//	ft_strdel(&del);
+	ft_strdel(&del);
 	return (a);
 }
 
-t_stack	*ft_pa(t_stack *a, t_stack *b, t_ret *ret)
+t_stack			*ft_pa(t_stack *a, t_stack *b, t_ret *ret)
 {
 	char	*del;
 
@@ -73,9 +79,6 @@ t_stack	*ft_pa(t_stack *a, t_stack *b, t_ret *ret)
 	del = ret->tp;
 	ret->tp = ft_strjoin(ret->tp, " pa");
 	ret->mov += 1;
-//	ft_strdel(&del);
-	
+	ft_strdel(&del);
 	return (a);
 }
-
-

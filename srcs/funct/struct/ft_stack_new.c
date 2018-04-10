@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:07 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/03/23 12:44:54 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/04/10 18:57:28 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,15 @@ static t_stack	*ft_allocate_stack(t_num *n)
 	return (s_a);
 }
 
-static t_stack	*ft_getpos(t_stack *s_a)
+static t_stack	*ft_getpos(t_stack *s_a, t_num *sort, int p, int g)
 {
-	int		p;
-	int		g;
 	int		pos;
-	t_num	*sort;
 	t_num	*tmp;
-	t_num	*bgn;
 
-	bgn = s_a->bgn;
-	if (!(sort = ft_sort(bgn)))
-		return (NULL);
-	p = 0;
-	g = 0;
 	pos = 0;
 	while (sort != NULL)
 	{
-		tmp = bgn;
+		tmp = s_a->bgn;
 		while (sort->num != tmp->num)
 			tmp = tmp->next;
 		tmp->p = p;
@@ -74,24 +65,14 @@ static t_stack	*ft_getpos(t_stack *s_a)
 t_stack			*ft_stacknew(t_num *n)
 {
 	t_stack	*s_a;
-	t_stack *s_b;
+	t_num	*sort;
 
 	if (!(s_a = ft_allocate_stack(n)))
 		return (NULL);
-	s_b = s_a->s_b;
-	if (!(s_a = ft_getpos(s_a)))
+	if (!(sort = ft_sort(s_a->bgn)))
 		return (NULL);
-	s_a->s_b->l = s_a->l;
-	s_a->s_b->l_g = s_a->l_g;
-//	while (s_a->bgn != NULL)
-//	{
-//		ft_putnbr(s_a->bgn->g);
-//		write(1, " ", 1);
-//		ft_putnbr(s_a->bgn->p);
-//		write(1, " ", 1);
-//		ft_putnbr(s_a->bgn->pos);
-//		write(1, "\n", 1);
-//		s_a->bgn = s_a->bgn->next;
-//	}
+	if (!(s_a = ft_getpos(s_a, sort, 0, 0)))
+		return (NULL);
+	ft_del_num(&sort);
 	return (s_a);
 }

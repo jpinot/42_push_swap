@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_num.c                                    :+:      :+:    :+:   */
+/*   ft_ret_new.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/26 17:22:44 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/03/23 11:28:59 by jpinyot          ###   ########.fr       */
+/*   Created: 2018/04/09 19:10:13 by jpinyot           #+#    #+#             */
+/*   Updated: 2018/04/10 18:56:24 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libswap.h"
 
-t_num	*ft_lstnew_num(int num, t_num *p)
+t_ret	*ft_ret_new(int sort)
 {
-	t_num *list;
+	t_ret *ret;
 
-	if (!(list = (t_num *)malloc(sizeof(t_num))))
+	if (!(ret = (t_ret *)malloc(sizeof(t_ret))))
 		return (NULL);
-	if (p != NULL)
-		list->prev = p;
+	ret->next = NULL;
+	if (sort)
+		ret->sort = sort;
 	else
-		list->prev = NULL;
-	list->num = num;
-	list->g = -1;
-	list->p = -1;
-	list->pos = -1;
-	list->m = -1;
-	list->next = NULL;
-	return (list);
+		ret->sort = -1;
+	ret->mov = 0;
+	if (!(ret->tp = ft_strnew(4)))
+		return (NULL);
+	ret->tp = ft_strcpy(ret->tp, "str:");
+	return (ret);
 }

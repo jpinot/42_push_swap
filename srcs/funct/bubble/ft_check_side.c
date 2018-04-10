@@ -1,40 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rr.c                                            :+:      :+:    :+:   */
+/*   ft_check_side.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/10 16:49:04 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/10 17:00:01 by jpinyot          ###   ########.fr       */
+/*   Created: 2018/03/19 17:32:17 by jpinyot           #+#    #+#             */
+/*   Updated: 2018/04/09 18:21:45 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libswap.h"
 
-static t_stack	*ft_rotate(t_stack *a)
+int	ft_check_side(t_stack *s, int pos)
 {
-	t_num *tmp;
+	t_num	*tmp;
+	int		i;
 
-	tmp = a->bgn->next;
-	a->bgn->next = NULL;
-	a->bgn->prev = a->end;
-	a->end->next = a->bgn;
-	a->end = a->bgn;
-	a->bgn = tmp;
-	a->bgn->prev = NULL;
-	return (a);
+	tmp = s->bgn;
+	i = 0;
+	while (tmp->pos != pos)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+	if (i > (s->l) / 2)
+		return (2);
+	else
+		return (1);
 }
 
-t_stack			*ft_rr(t_stack *a, t_ret *ret)
+int	ft_check_side_g(t_stack *s, int g)
 {
-	char *del;
+	t_num	*tmp;
+	int		i;
 
-	a = ft_rotate(a);
-	a->s_b = ft_rotate(a->s_b);
-	del = ret->tp;
-	ret->tp = ft_strjoin(ret->tp, " rr");
-	ret->mov += 1;
-	ft_strdel(&del);
-	return (a);
+	tmp = s->bgn;
+	i = 0;
+	while (tmp->g != g)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+	if (i > (s->l) / 2)
+		return (2);
+	else
+		return (1);
 }

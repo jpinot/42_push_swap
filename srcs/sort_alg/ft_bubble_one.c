@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 18:01:14 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/09 17:18:22 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/04/10 18:38:36 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ t_ret			*ft_bubble_one(t_num *bgn)
 		ft_pa(a, a->s_b, res);
 		p--;
 	}
+	ft_del_stack(&a);
 	return (res);
 }

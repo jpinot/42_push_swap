@@ -1,16 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sort.c                                          :+:      :+:    :+:   */
+/*   ft_sort_num.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/01 19:01:53 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/03/13 11:21:26 by jpinyot          ###   ########.fr       */
+/*   Created: 2018/04/09 19:23:28 by jpinyot           #+#    #+#             */
+/*   Updated: 2018/04/10 18:16:49 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libswap.h"
+
+static void		ft_move_minor(t_num *mv, t_num *tmp)
+{
+	mv->next = tmp->next;
+	mv->prev = tmp;
+	tmp->next = mv;
+	tmp = mv->next;
+	tmp->prev = mv;
+}
 
 static t_num	*ft_move(t_num *mv)
 {
@@ -22,11 +31,7 @@ static t_num	*ft_move(t_num *mv)
 	{
 		if (tmp->num < mv->num)
 		{
-			mv->next = tmp->next;
-			mv->prev = tmp;
-			tmp->next = mv;
-			tmp = mv->next;
-			tmp->prev = mv;
+			ft_move_minor(mv, tmp);
 			break ;
 		}
 		if (tmp->prev == NULL)
@@ -43,11 +48,11 @@ static t_num	*ft_move(t_num *mv)
 	return (tmp);
 }
 
-t_num	*ft_sort(t_num *num)
+t_num			*ft_sort(t_num *num)
 {
 	t_num	*arr;
 	t_num	*tmp;
-	int	i;
+	int		i;
 
 	i = 0;
 	tmp = num;
