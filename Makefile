@@ -6,7 +6,7 @@
 #    By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/14 22:43:59 by jpinyot           #+#    #+#              #
-#    Updated: 2018/04/09 17:32:18 by jpinyot          ###   ########.fr        #
+#    Updated: 2018/04/10 18:33:22 by jpinyot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,11 @@ FLAGS =
 
 SRC_DIR = srcs/
 
-FUNC_DIR = srcs/funct/
+FUNC_DIR = srcs/funct/struct/
 
-MRG_DIR = srcs/funct/merge
+MRG_DIR = srcs/funct/merge/
+
+BBL_DIR = srcs/funct/bubble/
 
 CMND_DIR = srcs/comands/
 
@@ -27,16 +29,25 @@ SRTALG_DIR = srcs/sort_alg/
 SRC = main.c\
 	  push_swap.c\
 
-FUNC = ft_sort.c\
+FUNC = ft_sort_num.c\
 	   ft_lstnew_num.c\
 	   ft_ret_new.c\
-	   ft_stacknew.c\
-	   ft_check_side.c\
-	   ft_group_one_sort.c\
-	   ft_group_sort.c\
-	   ft_sort_top.c
+	   ft_del_num.c\
+	   ft_del_ret.c\
+	   ft_del_stack.c\
+	   ft_stack_new.c
 
 MRG = ft_merge_func.c\
+	  ft_sort_top_a.c\
+	  ft_sort_top_b.c\
+	  ft_is_sort.c\
+	  ft_merge_b.c\
+	  ft_merge_a.c\
+	  ft_merge_a_bgn.c\
+
+BBL = ft_check_side.c\
+	  ft_group_one_sort.c\
+	  ft_group_sort.c
 
 CMND = ft_swap.c\
 	   ft_push.c\
@@ -49,24 +60,24 @@ CMND = ft_swap.c\
 SRT_ALG = ft_bubble_one.c\
 		  ft_bubble_group.c\
 		  ft_merge_one.c\
-		  ft_merge_group.c\
-		  ft_s_merge.c\
 
 OBJ_SRC = $(patsubst %.c, $(SRC_DIR)%.o, $(SRC))
 
 OBJ_FUNC = $(patsubst %.c, $(FUNC_DIR)%.o, $(FUNC))
 
-OBJ_MRG = $(patsubst %.c, $(MTG_DIR)%.o, $(MRG))
+OBJ_MRG = $(patsubst %.c, $(MRG_DIR)%.o, $(MRG))
+
+OBJ_BBL = $(patsubst %.c, $(BBL_DIR)%.o, $(BBL))
 
 OBJ_CMND = $(patsubst %.c, $(CMND_DIR)%.o, $(CMND))
 
 OBJ_SRT = $(patsubst %.c, $(SRTALG_DIR)%.o, $(SRT_ALG))
 
-OBJ = $(SRC:.c=.o) $(FUNC:.c=.o) $(CMND:.c=.o) $(SRT_ALG:.c=.o) $(MRG:.c=.o)
+OBJ = $(SRC:.c=.o) $(FUNC:.c=.o) $(CMND:.c=.o) $(SRT_ALG:.c=.o) $(MRG:.c=.o) $(BBL:.c=.o)
 
 all: $(NAME_SWAP)
 
-$(NAME_SWAP): $(OBJ_SRC) $(OBJ_FUNC) $(OBJ_CMND) $(OBJ_SRT) $(OBJ_MRG)
+$(NAME_SWAP): $(OBJ_SRC) $(OBJ_FUNC) $(OBJ_CMND) $(OBJ_SRT) $(OBJ_MRG) $(OBJ_BBL)
 	$(MAKE) -C libft
 	gcc $(FLAGS) -L./libft/ -lft -I./includes $(OBJ) -o $(NAME_SWAP)
 
