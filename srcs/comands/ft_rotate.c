@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 16:47:49 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/10 16:48:45 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/04/20 17:31:45 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_stack		*ft_ra(t_stack *a, t_ret *ret)
 	a->bgn = tmp;
 	a->bgn->prev = NULL;
 	del = ret->tp;
-	ret->tp = ft_strjoin(ret->tp, " ra");
+	ret->tp = ft_strjoin(ret->tp, "ra\n");
 	ret->mov += 1;
 	ft_strdel(&del);
 	return (a);
@@ -44,7 +44,7 @@ t_stack		*ft_rb(t_stack *b, t_ret *ret)
 	b->bgn = tmp;
 	b->bgn->prev = NULL;
 	del = ret->tp;
-	ret->tp = ft_strjoin(ret->tp, " rb");
+	ret->tp = ft_strjoin(ret->tp, "rb\n");
 	ret->mov += 1;
 	ft_strdel(&del);
 	return (b);

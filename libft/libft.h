@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 02:45:44 by jpinyot           #+#    #+#             */
-/*   Updated: 2017/11/17 20:02:21 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/04/17 13:03:37 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include "get_next_line.h"
 
 typedef struct		s_list
 {

@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 16:49:04 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/10 17:00:01 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/04/20 17:31:59 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_stack			*ft_rr(t_stack *a, t_ret *ret)
 	a = ft_rotate(a);
 	a->s_b = ft_rotate(a->s_b);
 	del = ret->tp;
-	ret->tp = ft_strjoin(ret->tp, " rr");
+	ret->tp = ft_strjoin(ret->tp, "rr\n");
 	ret->mov += 1;
 	ft_strdel(&del);
 	return (a);

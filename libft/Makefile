@@ -6,7 +6,7 @@
 #    By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 00:34:47 by jpinyot           #+#    #+#              #
-#    Updated: 2018/02/01 15:25:13 by jpinyot          ###   ########.fr        #
+#    Updated: 2018/04/17 13:02:05 by jpinyot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,9 @@ SRCS =ft_atoi.c\
 	ft_strsub.c\
 	ft_strtrim.c\
 	ft_tolower.c\
-	ft_toupper.c
+	ft_toupper.c\
+	get_next_line.c\
+
 
 OBJ = $(SRCS:.c=.o)
 

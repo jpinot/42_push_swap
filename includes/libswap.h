@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 19:15:07 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/10 18:52:01 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/04/17 13:10:42 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct	s_ret
 }				t_ret;
 
 int			push_swap(t_num *bgn);
+int			checker(t_num *n);
 
 //STRUCT
 
