@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 02:45:44 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/17 13:03:37 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/04/21 18:21:41 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "get_next_line.h"
+# include "./ft_printf/includes/libprintf.h"
+# define BUFF_SIZE 1
 
 typedef struct		s_list
 {
@@ -24,6 +25,7 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+int					get_next_line(const int fd, char **line);
 void				*ft_memset(void *str, int c, size_t n);
 void				ft_bzero(void *str, size_t n);
 size_t				ft_strlen(const char *str);

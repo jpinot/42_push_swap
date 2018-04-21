@@ -6,13 +6,14 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 19:15:07 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/17 13:10:42 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/04/21 19:16:07 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBSWAP_H
 # define LIBSWAP_H
 # include "../libft/libft.h"
+# include "../libft/ft_printf/includes/libprintf.h"
 
 typedef struct	s_num
 {
@@ -43,7 +44,11 @@ typedef struct	s_ret
 }				t_ret;
 
 int			push_swap(t_num *bgn);
-int			checker(t_num *n);
+int			checker(t_num *n, int p);
+
+//CHEKER
+
+void    ft_print_stack(t_stack *stk);
 
 //STRUCT
 
@@ -62,6 +67,7 @@ int			ft_check_side_g(t_stack *s, int g);
 int			ft_check_state(t_stack *s_a);
 t_stack		*ft_group_one_sort(t_stack *a, t_ret *ret);
 t_stack		*ft_group_sort(t_stack *a, t_stack *b, t_ret *ret);
+int			ft_chk_sort(t_stack *a);
 
 //MERGE
 

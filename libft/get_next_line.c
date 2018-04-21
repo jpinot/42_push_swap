@@ -6,11 +6,11 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 18:52:53 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/17 13:12:01 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/04/21 17:52:36 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 static t_list	*ft_checkfile(const int fd, t_list **file)
 {

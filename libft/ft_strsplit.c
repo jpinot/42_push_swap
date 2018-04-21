@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 19:15:12 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/20 19:36:11 by jpinyot          ###   ########.fr       */
+/*   Updated: 2017/11/17 04:55:50 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char		**ft_strsplit(char const *s, char c)
 
 	if (s == NULL)
 		return (NULL);
-	if (!(str = (char **)ft_memalloc(sizeof(char *) * (len_c(s, c) + 1))))
+	if (!(str = (char **)malloc(sizeof(char *) * (len_c(s, c) + 1))))
 		return (NULL);
 	if (len_c(s, c) == 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 11:51:21 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/20 19:51:19 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/04/21 19:44:18 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,42 +28,51 @@ static int	ft_chkr_sort(t_stack *a)
 	return (-1);
 }
 
-static int	ft_checker(t_stack *a, char **ord)
+static int	ft_order_cheker(t_stack *a, char **ord, t_ret *r, int i)
+{
+	if (ft_strcmp(ord[i], "sa") == 0 && a->bgn->next)
+		ft_sa(a, r);
+	else if (ft_strcmp(ord[i], "sb") == 0 && a->s_b->bgn->next)
+		ft_sb(a->s_b, r);
+	else if (ft_strcmp(ord[i], "ss") == 0 && a->bgn->next && a->s_b->bgn->next)
+		ft_ss(a, r);
+	else if (ft_strcmp(ord[i], "pa") == 0 && a->s_b->bgn)
+		ft_pa(a, a->s_b, r);
+	else if (ft_strcmp(ord[i], "pb") == 0 && a->bgn)
+		ft_pb(a, a->s_b, r);
+	else if (ft_strcmp(ord[i], "ra") == 0 && a->bgn->next)
+		ft_ra(a, r);
+	else if (ft_strcmp(ord[i], "rb") == 0 && a->s_b->bgn->next)
+		ft_rb(a->s_b, r);
+	else if (ft_strcmp(ord[i], "rr") == 0 && a->s_b->bgn->next && a->bgn->next)
+		ft_rr(a, r);
+	else if (ft_strcmp(ord[i], "rra") == 0 && a->bgn->next)
+		ft_rra(a, r);
+	else if (ft_strcmp(ord[i], "rrb") == 0 && a->s_b->bgn->next)
+		ft_rrb(a->s_b, r);
+	else if (ft_strcmp(ord[i], "rrr") == 0 && a->s_b->bgn->next && a->bgn->next)
+		ft_rrr(a, r);
+	else
+		return (-1);
+	return(1);
+}
+
+static int	ft_checker(t_stack *a, char **ord, int p)
 {
 	int i;
 	t_ret *r;
-	t_num *tmp;
 
 	r = ft_ret_new(0);
 	i = 0;
 	while(ord[i])
 	{
-		if (ft_strcmp(ord[i], "sa") == 0 && a->bgn->next)
-			ft_sa(a, r);
-		else if (ft_strcmp(ord[i], "sb") == 0 && a->s_b->bgn->next)
-			ft_sb(a->s_b, r);
-		else if (ft_strcmp(ord[i], "ss") == 0 && a->bgn->next && a->s_b->bgn->next)
-			ft_ss(a, r);
-		else if (ft_strcmp(ord[i], "pa") == 0 && a->s_b->bgn)
-			ft_pa(a, a->s_b, r);
-		else if (ft_strcmp(ord[i], "pb") == 0 && a->bgn)
-			ft_pb(a, a->s_b, r);
-		else if (ft_strcmp(ord[i], "ra") == 0 && a->bgn->next)
-			ft_ra(a, r);
-		else if (ft_strcmp(ord[i], "rb") == 0 && a->s_b->bgn->next)
-			ft_rb(a->s_b, r);
-		else if (ft_strcmp(ord[i], "rr") == 0 && a->s_b->bgn->next && a->bgn->next)
-			ft_rr(a, r);
-		else if (ft_strcmp(ord[i], "rra") == 0 && a->bgn->next)
-			ft_rra(a, r);
-		else if (ft_strcmp(ord[i], "rrb") == 0 && a->s_b->bgn->next)
-			ft_rrb(a->s_b, r);
-		else if (ft_strcmp(ord[i], "rrr") == 0 && a->s_b->bgn->next && a->bgn->next)
-			ft_rrr(a, r);
-		else
+		if (ft_order_cheker(a, ord, r, i) == -1)
 			return (-1);
+//		if (p == 1)
+//			ft_print_stack(a);
+//		if (p > 2)
+//			ft_print_stack_b(a, *ord, p);
 		i++;
-		tmp = a->bgn;
 	}
 	if (ft_chkr_sort(a))
 		return (1);
@@ -94,7 +103,7 @@ static char	**get_orders(void)
 	return (dob);
 }
 
-int		checker(t_num *n)
+int		checker(t_num *n, int p)
 {
 	char	**ord;
 	t_stack	*a;
@@ -103,9 +112,9 @@ int		checker(t_num *n)
 		return (-1);
 	if (!(ord = get_orders()))
 		return (-1);
-	if (ft_checker(a, ord) == 1)
+	if (ft_checker(a, ord, p) == 1)
 		ft_putstr("OK");
 	else
-		ft_putstr("error");
+		ft_putstr("KO");
 	return (0);
 }
