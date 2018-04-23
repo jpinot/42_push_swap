@@ -41,11 +41,19 @@ static t_stack	*ft_push_null(t_stack *a, t_stack *b)
 
 static t_stack	*ft_push_nn(t_stack *a, t_stack *b)
 {
-	b->bgn->prev = a->bgn;
-	a->bgn->next = b->bgn;
-	b->bgn = a->bgn;
-	a->bgn = NULL;
-	a->end = NULL;
+	if (b->bgn == NULL)
+	{
+		b->bgn = a->bgn;
+		a->bgn = NULL;
+	}
+	else
+	{
+		b->bgn->prev = a->bgn;
+		a->bgn->next = b->bgn;
+		b->bgn = a->bgn;
+		a->bgn = NULL;
+		a->end = NULL;
+	}
 	return (a);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 11:51:21 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/21 19:44:18 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/04/23 21:11:59 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ static int	ft_order_cheker(t_stack *a, char **ord, t_ret *r, int i)
 		ft_rrb(a->s_b, r);
 	else if (ft_strcmp(ord[i], "rrr") == 0 && a->s_b->bgn->next && a->bgn->next)
 		ft_rrr(a, r);
-	else
-		return (-1);
+	else 
+		return (0);
 	return(1);
 }
 
-static int	ft_checker(t_stack *a, char **ord, int p)
+static int	ft_checker(t_stack *a, char **ord, t_flag flag)
 {
 	int i;
 	t_ret *r;
@@ -66,17 +66,21 @@ static int	ft_checker(t_stack *a, char **ord, int p)
 	i = 0;
 	while(ord[i])
 	{
-		if (ft_order_cheker(a, ord, r, i) == -1)
+		if (ft_chk_corr_ord(ord, i) == -1)
 			return (-1);
-//		if (p == 1)
-//			ft_print_stack(a);
-//		if (p > 2)
+		if ((ft_order_cheker(a, ord, r, i)) == 0)
+			return (-1);
+		if (flag.v == 1)
+			ft_print_stack(a);
+//		if (flag.c > 2)
 //			ft_print_stack_b(a, *ord, p);
 		i++;
 	}
-	if (ft_chkr_sort(a))
+	if (flag.l == 1)
+		ft_printf("NUMBER OF MOVEMENTS: %d\n", r->mov);
+	if (ft_chkr_sort(a) == 1)
 		return (1);
-	return(-1);
+	return(0);
 }
 
 static char	**get_orders(void)
@@ -103,18 +107,21 @@ static char	**get_orders(void)
 	return (dob);
 }
 
-int		checker(t_num *n, int p)
+int		checker(t_num *n, t_flag p)
 {
 	char	**ord;
 	t_stack	*a;
+	int	i;
 
 	if (!(a = ft_stacknew(n)))
 		return (-1);
 	if (!(ord = get_orders()))
 		return (-1);
-	if (ft_checker(a, ord, p) == 1)
-		ft_putstr("OK");
-	else
-		ft_putstr("KO");
+	if ((i = ft_checker(a, ord, p)) == 1)
+		ft_printf("OK\n");
+	else if (i == 0)
+		ft_printf("KO\n");
+	else if (i == -1)
+		ft_dprintf(2, "Error\n");
 	return (0);
 }

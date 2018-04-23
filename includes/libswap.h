@@ -6,14 +6,14 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 19:15:07 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/21 19:16:07 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/04/23 21:00:39 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBSWAP_H
 # define LIBSWAP_H
 # include "../libft/libft.h"
-# include "../libft/ft_printf/includes/libprintf.h"
+//# include "../libft/ft_printf/includes/libprintf.h"
 
 typedef struct	s_num
 {
@@ -43,12 +43,22 @@ typedef struct	s_ret
 	struct s_ret	*next;
 }				t_ret;
 
-int			push_swap(t_num *bgn);
-int			checker(t_num *n, int p);
+typedef struct	s_flag
+{
+	int	v;
+	int	c;
+	int	l;
+}		t_flag;
+
+//PS
+
+int	push_swap(t_num *bgn);
+int	checker(t_num *n, t_flag);
 
 //CHEKER
 
-void    ft_print_stack(t_stack *stk);
+void   	ft_print_stack(t_stack *stk);
+int	ft_chk_corr_ord(char **ord, int i);
 
 //STRUCT
 
@@ -59,6 +69,7 @@ t_num		*ft_sort(t_num *num);
 t_num		*ft_lstnew_num(int num, t_num *p);
 t_ret		*ft_ret_new(int sort);
 t_stack		*ft_stacknew(t_num *n);
+int			ft_atoi_ps(const char *str);
 
 //BUBBLE
 

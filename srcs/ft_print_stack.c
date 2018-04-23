@@ -21,7 +21,7 @@ void	ft_print_stack(t_stack *stk)
 	b = stk->s_b->bgn;
 
 	ft_printf("  STACK A  |  STACK B  \n");
-	ft_printf("----------- -----------");
+	ft_printf("----------- -----------\n");
 	while (a || b)
 	{
 		if (a)
@@ -33,8 +33,10 @@ void	ft_print_stack(t_stack *stk)
 			ft_printf("           |");
 		if (b)
 		{
-			ft_printf("%-11d|", b->num);
+			ft_printf("%-11d", b->num);
 			b = b->next;
 		}
+		ft_printf("\n");
 	}
-}
+	ft_printf("\n");
+	}

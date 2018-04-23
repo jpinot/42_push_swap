@@ -66,10 +66,12 @@ int		main(int ac, char **av)
 	}
 	if (ft_check_repeat(bgn, str) == 0)
 	{
-		ft_putstr("error: non valid input");
+		ft_putstr("error");
 //		ft_strdel(str);
 		ft_del_num(&bgn);
 		return (-1);
 	}
+//	if (ac != 2)				pensaaa
+//		ft_strdel(str);
 	return (push_swap(bgn));
 }

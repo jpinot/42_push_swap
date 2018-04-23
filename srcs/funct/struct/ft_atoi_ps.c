@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atoi_ps.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/12 19:58:25 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/23 20:52:50 by jpinyot          ###   ########.fr       */
+/*   Created: 2018/04/23 20:53:01 by jpinyot           #+#    #+#             */
+/*   Updated: 2018/04/23 21:12:05 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libswap.h"
 
-int		ft_atoi(const char *str)
+int		ft_atoi_ps(const char *str)
 {
-	int		n;
+	long	n;
 	size_t	i;
 	size_t	neg;
 
@@ -37,5 +37,7 @@ int		ft_atoi(const char *str)
 	}
 	if (neg > 0)
 		n *= -1;
-	return (n);
+	if (n > 2147483647 || n < -2147483648)
+		return (-1);
+	return (0);
 }

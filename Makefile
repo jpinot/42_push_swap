@@ -6,7 +6,7 @@
 #    By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/14 22:43:59 by jpinyot           #+#    #+#              #
-#    Updated: 2018/04/21 19:43:35 by jpinyot          ###   ########.fr        #
+#    Updated: 2018/04/23 20:54:31 by jpinyot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,8 @@ SRC = main_ps.c\
 
 CHECK = main_c.c\
 		checker.c\
+		ft_print_stack.c\
+		checker_funct.c\
 
 FUNC = ft_sort_num.c\
 	   ft_lstnew_num.c\
@@ -40,7 +42,8 @@ FUNC = ft_sort_num.c\
 	   ft_del_num.c\
 	   ft_del_ret.c\
 	   ft_del_stack.c\
-	   ft_stack_new.c
+	   ft_stack_new.c\
+	   ft_atoi_ps.c\
 
 MRG = ft_merge_func.c\
 	  ft_sort_top_a.c\
@@ -94,13 +97,13 @@ $(NAME_SWAP): $(OBJ_SRC) $(OBJ_FUNC) $(OBJ_CMND) $(OBJ_SRT) $(OBJ_MRG) $(OBJ_BBL
 
 $(NAME_CHECK): $(OBJ_CHECK) $(OBJ_FUNC) $(OBJ_CMND) $(OBJ_SRT) $(OBJ_MRG) $(OBJ_BBL)
 	$(MAKE) -C libft
-	gcc $(FLAGS) -L./libft/ -lft -I./includes $(OBJ_C) -o $(NAME_CHECK)
+	gcc $(FLAGS) -L./libft/ -lft -L./libft/ft_printf -lftprintf -I./includes $(OBJ_C) -o $(NAME_CHECK)
 %.o : %.c
 	gcc $(FLAGS) -I./includes -c $<
 
 clean:
 	@$(MAKE) -C libft clean
-	@/bin/rm -f $(OBJ)
+	@/bin/rm -f $(OBJ) $(OBJ_C)
 
 fclean: clean
 	@$(MAKE) -C libft fclean
