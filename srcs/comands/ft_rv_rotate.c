@@ -25,7 +25,8 @@ t_stack		*ft_rra(t_stack *a, t_ret *ret)
 	a->end = tmp;
 	a->end->next = NULL;
 	del = ret->tp;
-	ret->tp = ft_strjoin(ret->tp, "rra\n");
+	if (!(ret->tp = ft_strjoin(ret->tp, "rra\n")))
+		return (NULL);
 	ret->mov += 1;
 	ft_strdel(&del);
 	return (a);
@@ -44,7 +45,8 @@ t_stack		*ft_rrb(t_stack *b, t_ret *ret)
 	b->end = tmp;
 	b->end->next = NULL;
 	del = ret->tp;
-	ret->tp = ft_strjoin(ret->tp, "rrb\n");
+	if (!(ret->tp = ft_strjoin(ret->tp, "rrb\n")))
+		return (NULL);
 	ret->mov += 1;
 	ft_strdel(&del);
 	return (b);

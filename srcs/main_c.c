@@ -39,6 +39,40 @@ static int	ft_check_repeat(t_num *bgn, char **str)
 	return (1);
 }
 
+static int	ft_flag_chkr(t_flag *flag,char **av)
+{
+	int i;
+	
+	i = 1;
+	flag->v = 0;
+	flag->l = 0;
+	flag->o = 0;
+	flag->m = 0;
+	flag->p = 0;
+	flag->s = 0;
+	while (av[i])
+	{
+		if (ft_strcmp(av[i], "-p") == 0)
+			flag->p = 1;
+		else if (ft_strcmp(av[i], "-m") == 0)
+			flag->m = 1;
+		else if (ft_strcmp(av[i], "-o") == 0)
+			flag->o = 1;
+		else if (ft_strcmp(av[i], "-v") == 0)
+			flag->v = 1;
+		else if (ft_strcmp(av[i], "-c") == 0)
+			flag->v = 2;
+		else if (ft_strcmp(av[i], "-l") == 0)
+			flag->l = 1;
+		else if (ft_strcmp(av[i], "-s") == 0)
+			flag->s = 1;
+		else
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
 int		main(int ac, char **av)
 {
 	char	**str;
@@ -47,37 +81,21 @@ int		main(int ac, char **av)
 	t_num	*num;
 	t_num	*bgn;
 
-	i = 0;
-	flag.v = 0;
-	flag.l = 0;
-	flag.c = 0;
 	if (ac < 2)
 		return (-1);
 	else if (ac == 2)
 		str = ft_strsplit(av[1], ' ');
 	else
 	{
-		if (ft_strcmp(av[1], "-v") == 0)
-		{
-			flag.v = 1;
-			str = ft_strsplit(av[2], ' ');
-		}
-		else if (ft_strcmp(av[1], "-c") == 0)
-		{
-			flag.c = 1;
-			str = ft_strsplit(av[2], ' ');
-		}
-		else if (ft_strcmp(av[1], "-l") == 0)
-		{
-			flag.l = 1;
-			str = ft_strsplit(av[2], ' ');
-		}
+		if ((i = ft_flag_chkr(&flag, av)) > 1 && av[i + 1] == NULL)
+			str = ft_strsplit(av[i], ' ');
 		else
 		{
 			str = av;
-			str++;
+			str += i;
 		}
 	}
+	i = 0;
 	if (ft_atoi_ps(str[i]) == -1)
 	{
 		ft_dprintf(2, "Error\n");

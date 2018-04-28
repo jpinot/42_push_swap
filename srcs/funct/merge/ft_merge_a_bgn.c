@@ -6,21 +6,26 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 18:08:47 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/10 17:32:13 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/04/28 15:56:17 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libswap.h"
 
-static void	ft_pb_ra(t_stack *a, t_ret *ret, int i, int pos)
+static int	ft_pb_ra(t_stack *a, t_ret *ret, int i, int pos)
 {
 	if (a->bgn->pos <= pos)
 	{
 		a->bgn->m = i;
-		ft_pb(a, a->s_b, ret);
+		if (!(ft_pb(a, a->s_b, ret)))
+			return (-1);
 	}
 	else
-		ft_ra(a, ret);
+	{
+		if (!(ft_ra(a, ret)))
+			return (-1);
+	}
+	return (1);
 }
 
 int			ft_merge_a_bgn(t_stack *a, t_ret *ret, int p)
@@ -45,7 +50,8 @@ int			ft_merge_a_bgn(t_stack *a, t_ret *ret, int p)
 				tmp = tmp / 2;
 			pos = tmp + pos;
 		}
-		ft_pb_ra(a, ret, i, pos);
+		if (ft_pb_ra(a, ret, i, pos) == -2)
+			return (-2);
 	}
 	return (a->bgn->pos - 1);
 }

@@ -32,7 +32,8 @@ t_stack			*ft_ss(t_stack *a, t_ret *ret)
 	a = ft_swap(a);
 	a->s_b = ft_swap(a->s_b);
 	del = ret->tp;
-	ret->tp = ft_strjoin(ret->tp, "ss\n");
+	if (!(ret->tp = ft_strjoin(ret->tp, "ss\n")))
+		return (NULL);
 	ret->mov += 1;
 	return (a);
 }

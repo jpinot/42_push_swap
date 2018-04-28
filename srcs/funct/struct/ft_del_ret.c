@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 18:21:42 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/10 18:37:47 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/04/28 15:52:20 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_del_ret(t_ret **lst)
 	if (!(*lst))
 		return ;
 	l = *lst;
-	while(l)
+	while (l)
 	{
 		tmp = l->next;
 		free(l->tp);

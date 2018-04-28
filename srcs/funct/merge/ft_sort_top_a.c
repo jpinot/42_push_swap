@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 17:38:45 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/10 17:40:20 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/04/28 18:30:25 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,26 @@ static t_stack	*ft_sort_top_three(t_stack *a, t_ret *ret, int p)
 {
 	if (a->bgn->pos == p)
 	{
-		ft_sa(a, ret);
-		ft_ra(a, ret);
-		ft_sa(a, ret);
-		ft_rra(a, ret);
+		if (!ft_sa(a, ret) || !ft_ra(a, ret)
+				|| !ft_sa(a, ret) || !ft_rra(a, ret))
+			return (NULL);
 		if (a->bgn->pos > a->bgn->next->pos)
-			ft_sa(a, ret);
+			if (!(ft_sa(a, ret)))
+				return (NULL);
 	}
 	else if (a->bgn->next->pos == p)
 	{
-		ft_ra(a, ret);
-		ft_sa(a, ret);
-		ft_rra(a, ret);
+		if (!ft_ra(a, ret) || !ft_sa(a, ret) || !ft_rra(a, ret))
+			return (NULL);
 		if (a->bgn->pos > a->bgn->next->pos)
-			ft_sa(a, ret);
+			if (!(ft_sa(a, ret)))
+				return (NULL);
 	}
 	else
 	{
 		if (a->bgn->pos > a->bgn->next->pos)
-			ft_sa(a, ret);
+			if (!(ft_sa(a, ret)))
+				return (NULL);
 	}
 	return (a);
 }
@@ -49,10 +50,14 @@ t_stack			*ft_sort_top_a(t_stack *a, t_ret *ret, int pos)
 	else if (m == 2)
 	{
 		if (a->bgn->pos > a->bgn->next->pos)
-			ft_sa(a, ret);
+			if (!(ft_sa(a, ret)))
+				return (NULL);
 	}
 	else
-		a = ft_sort_top_three(a, ret, pos);
+	{
+		if (!(a = ft_sort_top_three(a, ret, pos)))
+			return (NULL);
+	}
 	a->bgn->m = -1;
 	return (a);
 }

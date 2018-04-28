@@ -24,7 +24,8 @@ t_stack	*ft_sa(t_stack *a, t_ret *ret)
 	tmp->prev = NULL;
 	a->bgn = tmp;
 	d = ret->tp;
-	ret->tp = ft_strjoin(ret->tp, "sa\n");
+	if (!(ret->tp = ft_strjoin(ret->tp, "sa\n")))
+		return (NULL);
 	ret->mov += 1;
 	ft_strdel(&d);
 	return (a);
@@ -42,7 +43,8 @@ t_stack	*ft_sb(t_stack *b, t_ret *ret)
 	tmp->prev = NULL;
 	b->bgn = tmp;
 	d = ret->tp;
-	ret->tp = ft_strjoin(ret->tp, "sb\n");
+	if (!(ret->tp = ft_strjoin(ret->tp, "sb\n")))
+		return (NULL);
 	ret->mov += 1;
 	ft_strdel(&d);
 	return (b);

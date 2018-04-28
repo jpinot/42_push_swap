@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 18:10:15 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/10 18:34:56 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/04/28 15:52:06 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_del_num(t_num **lst)
 	if (!(*lst))
 		return ;
 	l = *lst;
-	while(l)
+	while (l)
 	{
 		tmp = l->next;
 		free(l);

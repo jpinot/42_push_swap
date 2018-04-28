@@ -14,7 +14,7 @@ NAME_SWAP = push_swap
 
 NAME_CHECK = checker
 
-FLAGS =
+FLAGS = -Wall -Wextra -Werror
 
 SRC_DIR = srcs/
 
@@ -90,16 +90,16 @@ OBJ_C = $(CHECK:.c=.o) $(FUNC:.c=.o) $(CMND:.c=.o) $(SRT_ALG:.c=.o) $(MRG:.c=.o)
 all: $(NAME_SWAP) $(NAME_CHECK)
 
 $(NAME_SWAP): $(OBJ_SRC) $(OBJ_FUNC) $(OBJ_CMND) $(OBJ_SRT) $(OBJ_MRG) $(OBJ_BBL)
-	$(MAKE) -C libft
-	gcc $(FLAGS) -L./libft/ -lft -I./includes $(OBJ) -o $(NAME_SWAP)
+	@$(MAKE) -C libft
+	@gcc $(FLAGS) -L./libft/ -lft -L./libft/ft_printf -lftprintf -I./includes $(OBJ) -o $(NAME_SWAP)
 %.o : %.c
-	gcc $(FLAGS) -I./includes -c $<
+	@gcc $(FLAGS) -I./includes -c $<
 
 $(NAME_CHECK): $(OBJ_CHECK) $(OBJ_FUNC) $(OBJ_CMND) $(OBJ_SRT) $(OBJ_MRG) $(OBJ_BBL)
-	$(MAKE) -C libft
-	gcc $(FLAGS) -L./libft/ -lft -L./libft/ft_printf -lftprintf -I./includes $(OBJ_C) -o $(NAME_CHECK)
+	@$(MAKE) -C libft
+	@gcc $(FLAGS) -L./libft/ -lft -L./libft/ft_printf -lftprintf -I./includes $(OBJ_C) -o $(NAME_CHECK)
 %.o : %.c
-	gcc $(FLAGS) -I./includes -c $<
+	@gcc $(FLAGS) -I./includes -c $<
 
 clean:
 	@$(MAKE) -C libft clean

@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 12:07:08 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/20 19:25:10 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/04/28 17:39:05 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 t_ret	*ft_merge_one(t_num *bgn)
 {
-	int		g;
 	int		p;
 	t_ret	*ret;
 	t_stack	*a;
@@ -25,9 +24,11 @@ t_ret	*ft_merge_one(t_num *bgn)
 	while (a->s_b->bgn)
 	{
 		if (a->bgn && a->s_b->bgn)
-			p = ft_merge_b(a, ret, p);
+			if ((p = ft_merge_b(a, ret, p)) == -2)
+				return (NULL);
 		if (a->bgn && a->s_b->bgn)
-			p = ft_merge_a(a, ret, p);
+			if ((p = ft_merge_a(a, ret, p)) == -2)
+				return (NULL);
 	}
 	ft_del_stack(&a);
 	return (ret);

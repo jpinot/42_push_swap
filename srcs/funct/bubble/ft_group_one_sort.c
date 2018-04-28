@@ -15,23 +15,27 @@
 static t_stack	*ft_two_num(t_stack *a, t_ret *ret)
 {
 	if (a->bgn->p > a->end->p)
-		ft_sa(a, ret);
+		if (!(ft_sa(a, ret)))
+			return (NULL);
 	return (a);
 }
 
 static t_stack	*ft_three_num(t_stack *a, t_ret *ret)
 {
 	if (a->bgn->p > a->bgn->next->p && a->bgn->p > a->end->p)
-		ft_ra(a, ret);
+		if (!(ft_ra(a, ret)))
+			return (NULL);
 	if (a->bgn->p > a->bgn->next->p && a->bgn->p < a->end->p)
-		ft_sa(a, ret);
+		if (!(ft_sa(a, ret)))
+			return (NULL);
 	if (a->bgn->next->p > a->bgn->p && a->bgn->next->p > a->end->p)
 	{
-		ft_sa(a, ret);
-		ft_ra(a, ret);
+		if (!(ft_sa(a, ret)) || !(ft_ra(a, ret)))
+			return (NULL);
 	}
 	if (a->bgn->p > a->bgn->next->p)
-		ft_sa(a, ret);
+		if (!(ft_sa(a, ret)))
+			return (NULL);
 	return (a);
 }
 

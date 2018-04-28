@@ -33,7 +33,8 @@ t_stack			*ft_rrr(t_stack *a, t_ret *ret)
 	a = ft_reverse(a);
 	a->s_b = ft_reverse(a->s_b);
 	del = ret->tp;
-	ret->tp = ft_strjoin(ret->tp, "rrr\n");
+	if (!(ret->tp = ft_strjoin(ret->tp, "rrr\n")))
+		return (NULL);
 	ret->mov += 1;
 	ft_strdel(&del);
 	return (a);

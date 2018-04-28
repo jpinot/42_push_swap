@@ -19,7 +19,7 @@ static t_num *ft_copynum(t_num *n)
 	t_num *s;
 
 	s = n;
-	if ((num = ft_lstnew_num(s->num, num)) == NULL)
+	if ((num = ft_lstnew_num(s->num, NULL)) == NULL)
 		return (NULL);
 	bgn = num;
 	while (s->next)
@@ -40,8 +40,8 @@ static void	ft_print_res(t_ret *op)
 		ft_putstr(&(op->next->tp[4]));
 	else if (op->mov > op->next->next->mov && op->next->mov > op->next->next->mov)
 		ft_putstr(&(op->next->next->tp[4]));
-}
 
+}
 
 int	push_swap(t_num *bgn)
 {

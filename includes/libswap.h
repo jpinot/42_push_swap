@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 19:15:07 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/23 21:00:39 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/04/28 15:36:09 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,11 @@ typedef struct	s_ret
 typedef struct	s_flag
 {
 	int	v;
-	int	c;
+	int	o;
 	int	l;
+	int	p;
+	int	m;
+	int	s;
 }		t_flag;
 
 //PS
@@ -58,7 +61,11 @@ int	checker(t_num *n, t_flag);
 //CHEKER
 
 void   	ft_print_stack(t_stack *stk);
+void    ft_print_stack_c(t_stack *stk, char **str, int i, int p);
+void    ft_color_impl(t_stack *a, char **str, int i);
+void    ft_color_del(t_stack *a, char **str, int i);
 int	ft_chk_corr_ord(char **ord, int i);
+void    ft_read_nd_clear(void);
 
 //STRUCT
 

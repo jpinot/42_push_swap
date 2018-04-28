@@ -60,13 +60,18 @@ int		main(int ac, char **av)
 	bgn = num;
 	while (str[++i])
 	{
+		 if (ft_atoi_ps(str[i]) == -1)
+		 {
+			 i = -1;
+			 break ;
+		 }
 		if ((num->next = ft_lstnew_num(ft_atoi(str[i]), num)) == NULL)
 			return (-1);
 		num = num->next;
 	}
-	if (ft_check_repeat(bgn, str) == 0)
+	if (ft_check_repeat(bgn, str) == 0 || i == -1)
 	{
-		ft_putstr("error");
+		ft_dprintf(2, "Error\n");
 //		ft_strdel(str);
 		ft_del_num(&bgn);
 		return (-1);

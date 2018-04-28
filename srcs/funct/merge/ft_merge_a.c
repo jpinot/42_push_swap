@@ -6,32 +6,40 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 18:08:24 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/10 17:28:20 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/04/28 18:28:55 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libswap.h"
 
-static int	ft_r_b_n(t_stack *a, int p, t_ret *ret)
+static int	ft_r_b_n(t_stack *a, t_ret *ret)
 {
 	if (a->end->m != -1)
 	{
 		while (a->end->m != -1)
-			ft_rra(a, ret);
+		{
+			if (!(ft_rra(a, ret)))
+				return (-1);
+		}
 		return (1);
 	}
 	return (0);
 }
 
-static void	ft_pb_nd_ra(t_stack *a, t_ret *ret, int pos, int i)
+static int	ft_pb_nd_ra(t_stack *a, t_ret *ret, int pos, int i)
 {
 	if (a->bgn->pos >= pos)
-		ft_ra(a, ret);
+	{
+		if (!(ft_ra(a, ret)))
+			return (-1);
+	}
 	else
 	{
 		a->bgn->m = i;
-		ft_pb(a, a->s_b, ret);
+		if (!(ft_pb(a, a->s_b, ret)))
+			return (-1);
 	}
+	return (1);
 }
 
 int			ft_merge_a(t_stack *a, t_ret *ret, int p)
@@ -41,7 +49,8 @@ int			ft_merge_a(t_stack *a, t_ret *ret, int p)
 
 	if (ft_check_m(a) < 4 && !(ft_is_sort(a, p)))
 	{
-		a = ft_sort_top_a(a, ret, p);
+		if (!(a = ft_sort_top_a(a, ret, p)))
+			return (-2);
 		return (a->bgn->pos - 1);
 	}
 	pos = (p + 1) - (ft_check_m(a) / 2);
@@ -52,13 +61,18 @@ int			ft_merge_a(t_stack *a, t_ret *ret, int p)
 			break ;
 		if (ft_non_minor_pos(a, pos))
 		{
-			ft_r_b_n(a, p, ret);
+			if (ft_r_b_n(a, ret) == -1)
+				return (-2);
 			return (ft_merge_a(a, ret, p));
 		}
-		ft_pb_nd_ra(a, ret, pos, i);
+		if (ft_pb_nd_ra(a, ret, pos, i) == -1)
+			return (-2);
 	}
 	a->bgn->m = -1;
-	if (ft_r_b_n(a, p, ret))
-		return (ft_merge_a(a, ret, p - 1));
+	p = a->bgn->pos - 1;
+	if ((i = ft_r_b_n(a, ret)) == 1)
+		return (ft_merge_a(a, ret, p));
+	else if (i == -1)
+		return (-2);
 	return (a->bgn->pos - 1);
 }
