@@ -6,94 +6,70 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 11:51:21 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/28 18:44:01 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/04/29 11:37:28 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libswap.h"
 
-static int	ft_chkr_sort(t_stack *a)
-{
-	t_num *n;
-
-	n = a->bgn;
-	while(n->next)
-	{
-		if(n->num > n->next->num)
-			return (-1);
-		n = n->next;
-	}
-	if (a->s_b->bgn == NULL)
-		return (1);
-	return (-1);
-}
-
-static int	ft_order_cheker(t_stack *a, char **ord, t_ret *r, int i)
+static t_stack	*ft_order_cheker(t_stack *a, char **ord, t_ret *r, int i)
 {
 	if (ft_strcmp(ord[i], "sa") == 0 && a->bgn->next)
-		ft_sa(a, r);
+		return (ft_sa(a, r));
 	else if (ft_strcmp(ord[i], "sb") == 0 && a->s_b->bgn->next)
-		ft_sb(a->s_b, r);
+		return (ft_sb(a->s_b, r));
 	else if (ft_strcmp(ord[i], "ss") == 0 && a->bgn->next && a->s_b->bgn->next)
-		ft_ss(a, r);
+		return (ft_ss(a, r));
 	else if (ft_strcmp(ord[i], "pa") == 0 && a->s_b->bgn)
-		ft_pa(a, a->s_b, r);
+		return (ft_pa(a, a->s_b, r));
 	else if (ft_strcmp(ord[i], "pb") == 0 && a->bgn)
-		ft_pb(a, a->s_b, r);
+		return (ft_pb(a, a->s_b, r));
 	else if (ft_strcmp(ord[i], "ra") == 0 && a->bgn->next)
-		ft_ra(a, r);
+		return (ft_ra(a, r));
 	else if (ft_strcmp(ord[i], "rb") == 0 && a->s_b->bgn->next)
-		ft_rb(a->s_b, r);
+		return (ft_rb(a->s_b, r));
 	else if (ft_strcmp(ord[i], "rr") == 0 && a->s_b->bgn->next && a->bgn->next)
-		ft_rr(a, r);
+		return (ft_rr(a, r));
 	else if (ft_strcmp(ord[i], "rra") == 0 && a->bgn->next)
-		ft_rra(a, r);
+		return (ft_rra(a, r));
 	else if (ft_strcmp(ord[i], "rrb") == 0 && a->s_b->bgn->next)
-		ft_rrb(a->s_b, r);
+		return (ft_rrb(a->s_b, r));
 	else if (ft_strcmp(ord[i], "rrr") == 0 && a->s_b->bgn->next && a->bgn->next)
-		ft_rrr(a, r);
-	else 
-		return (0);
-	return(1);
+		return (ft_rrr(a, r));
+	else
+		return (NULL);
+	return (a);
 }
 
-static int	ft_checker(t_stack *a, char **ord, t_flag flag)
+static int		ft_checker(t_stack *a, char **ord, t_flag flag, t_ret *r)
 {
-	int i;
-	t_ret *r;
+	int		i;
 
-	r = ft_ret_new(0);
 	i = 0;
-	if (flag.v == 1)
-		ft_print_stack(a);
-	while(ord[i])
+	while (ord[i])
 	{
 		if (ft_chk_corr_ord(ord, i) == -1)
 			return (-1);
-		if ((ft_order_cheker(a, ord, r, i)) == 0)
+		if (!(ft_order_cheker(a, ord, r, i)))
 			return (-1);
 		if (flag.o == 1)
 			ft_printf("\e[31m%s: \e[0m", ord[i]);
-		if(flag.m == 0 && flag.o == 1)
+		if (flag.m == 0 && flag.o == 1)
 			ft_printf("\n");
 		if (flag.m == 1)
 			ft_printf("\e[34m->%d<-\n\e[0m", i + 1);
 		if (flag.v == 1)
 			ft_print_stack(a);
 		if (flag.v == 2)
-			ft_print_stack_c(a, ord, i, flag.p);
-		if (flag.s == 1)
-			ft_read_nd_clear();
+			ft_print_stack_c(a, ord, i, flag);
 		i++;
 	}
-	if (flag.l == 1)
-		ft_printf("NUMBER OF MOVEMENTS: %d\n", r->mov);
-	if (ft_chkr_sort(a) == 1)
-		return (1);
-	return(0);
+	i = ft_chkr_sort(a);
+	ft_del_stack(&a);
+	return (i);
 }
 
-static char	**get_orders(void)
+static char		**get_orders(void)
 {
 	char	*ret;
 	char	*d;
@@ -105,7 +81,7 @@ static char	**get_orders(void)
 		return (NULL);
 	if (!(buf = ft_strnew(5)))
 		return (NULL);
-	while(read(0, buf, 4))
+	while (read(0, buf, 4))
 	{
 		d = ret;
 		ret = ft_strjoin(ret, buf);
@@ -115,21 +91,31 @@ static char	**get_orders(void)
 	return (ft_strsplit(ret, '\n'));
 }
 
-int		checker(t_num *n, t_flag p)
+int				checker(t_num *n, t_flag p)
 {
 	char	**ord;
 	t_stack	*a;
-	int	i;
+	t_ret	*r;
+	int		i;
 
+	r = ft_ret_new(0);
 	if (!(a = ft_stacknew(n)))
 		return (-1);
 	if (!(ord = get_orders()))
 		return (-1);
-	if ((i = ft_checker(a, ord, p)) == 1)
+	if (p.v == 1)
+		ft_print_stack(a);
+	if ((i = ft_checker(a, ord, p, r)) == 1)
+	{
+		if (p.l == 1)
+			ft_printf("NUMBER OF MOVEMENTS: %d\n", r->mov);
 		ft_printf("OK\n");
+	}
 	else if (i == 0)
 		ft_printf("KO\n");
 	else if (i == -1)
 		ft_dprintf(2, "Error\n");
+	ft_strdel(ord);
+	ft_del_ret(&r);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/14 22:43:59 by jpinyot           #+#    #+#              #
-#    Updated: 2018/04/23 20:54:31 by jpinyot          ###   ########.fr        #
+#    Updated: 2018/04/29 09:50:42 by jpinyot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ NAME_CHECK = checker
 FLAGS = -Wall -Wextra -Werror
 
 SRC_DIR = srcs/
+
+CHK_DIR = srcs/checker/
 
 FUNC_DIR = srcs/funct/struct/
 
@@ -44,6 +46,7 @@ FUNC = ft_sort_num.c\
 	   ft_del_stack.c\
 	   ft_stack_new.c\
 	   ft_atoi_ps.c\
+	   ft_flag_new.c\
 
 MRG = ft_merge_func.c\
 	  ft_sort_top_a.c\
@@ -71,7 +74,7 @@ SRT_ALG = ft_bubble_one.c\
 
 OBJ_SRC = $(patsubst %.c, $(SRC_DIR)%.o, $(SRC))
 
-OBJ_CHECK = $(patsubst %.c, $(SRC_DIR)%.o, $(CHECK))
+OBJ_CHECK = $(patsubst %.c, $(CHK_DIR)%.o, $(CHECK))
 
 OBJ_FUNC = $(patsubst %.c, $(FUNC_DIR)%.o, $(FUNC))
 

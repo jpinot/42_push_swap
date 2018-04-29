@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 19:15:07 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/28 15:36:09 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/04/29 11:04:23 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,12 @@ int	checker(t_num *n, t_flag);
 //CHEKER
 
 void   	ft_print_stack(t_stack *stk);
-void    ft_print_stack_c(t_stack *stk, char **str, int i, int p);
+void    ft_print_stack_c(t_stack *stk, char **str, int i, t_flag flag);
 void    ft_color_impl(t_stack *a, char **str, int i);
 void    ft_color_del(t_stack *a, char **str, int i);
 int	ft_chk_corr_ord(char **ord, int i);
 void    ft_read_nd_clear(void);
+int     ft_chkr_sort(t_stack *a);
 
 //STRUCT
 
@@ -77,6 +78,7 @@ t_num		*ft_lstnew_num(int num, t_num *p);
 t_ret		*ft_ret_new(int sort);
 t_stack		*ft_stacknew(t_num *n);
 int			ft_atoi_ps(const char *str);
+int  ft_flag_new(t_flag *flag, char **av);
 
 //BUBBLE
 

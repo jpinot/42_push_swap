@@ -74,7 +74,6 @@ ERR=0
 for i in range {1..99}
 	do 
 		ARG=`ruby -e "puts (-99..0).to_a.shuffle.join(' ')"`
-		echo $ARG;
 		RET=`./push_swap $ARG | ./checker $ARG`
 		if [ "$RET" != "OK" ];
 			then
@@ -97,7 +96,6 @@ ERR=0
 for i in range {1..99}
 	do 
 		ARG=`ruby -e "puts (0..99).to_a.shuffle.join(' ')"`
-		echo $ARG;
 		RET=`./push_swap $ARG | ./checker $ARG`
 		if [ "$RET" != "OK" ];
 			then
@@ -137,7 +135,7 @@ fi
 #else
 #	echo -e "\033[0;31m Fail $ERR / 100"
 #fi
-
+#
 if [ -e "./res" ]
 	then
 	echo "\033[0merasing res file"
@@ -154,7 +152,7 @@ done
 
 ./tester res
 
-#rm res
+rm res
 #echo -e '\033[0mGetting an average in a range from 0 to 499'
 #ERR=0
 #for i in range {1..99}
@@ -164,4 +162,4 @@ done
 #done
 
 #./tester res
-rm res
+#rm res
