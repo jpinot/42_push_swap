@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 11:51:21 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/29 11:37:28 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/04/29 18:43:13 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ static char		**get_orders(void)
 	char	*d;
 	int		i;
 	char	*buf;
+	char	**r;
 
 	i = 0;
 	if (!(ret = ft_strnew(0)))
@@ -88,7 +89,22 @@ static char		**get_orders(void)
 		ft_strdel(&d);
 		buf = ft_memset(buf, 0, 5);
 	}
-	return (ft_strsplit(ret, '\n'));
+	ft_strdel(&buf);
+	r = ft_strsplit(ret, '\n');
+	ft_strdel(&ret);
+	return (r);
+}
+
+static int		del_struct(char **ord, t_ret *r)
+{
+	int i;
+
+	i = 0;
+	while (ord[++i])
+		free(ord[i]);
+	free(ord);
+	ft_del_ret(&r);
+	return (0);
 }
 
 int				checker(t_num *n, t_flag p)
@@ -115,7 +131,5 @@ int				checker(t_num *n, t_flag p)
 		ft_printf("KO\n");
 	else if (i == -1)
 		ft_dprintf(2, "Error\n");
-	ft_strdel(ord);
-	ft_del_ret(&r);
-	return (0);
+	return (del_struct(ord, r));
 }

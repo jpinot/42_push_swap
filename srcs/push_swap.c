@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 17:51:17 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/29 11:37:30 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/04/29 16:30:03 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,5 @@ int				push_swap(t_num *bgn)
 		return (-1);
 	ft_print_res(op);
 	ft_del_ret(&op);
-//	ft_del_num(&bgn);
-//	ft_del_num(&n2);
-//	ft_del_num(&n3);
 	return (0);
 }

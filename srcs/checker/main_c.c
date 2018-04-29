@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 11:49:01 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/29 10:16:07 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/04/29 17:06:37 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ static t_num	*ft_new_n_struct(t_num *num, char **str, int i, int ac)
 	if (ft_check_repeat(bgn, str) == 0 || i == -1)
 	{
 		ft_dprintf(2, "Error\n");
+		if (ac == 2)
+			ft_strdel(str);
 		ft_del_num(&num);
 		return (NULL);
 	}

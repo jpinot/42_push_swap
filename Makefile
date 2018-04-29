@@ -6,7 +6,7 @@
 #    By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/14 22:43:59 by jpinyot           #+#    #+#              #
-#    Updated: 2018/04/29 09:50:42 by jpinyot          ###   ########.fr        #
+#    Updated: 2018/04/29 16:30:12 by jpinyot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME_SWAP = push_swap
 
 NAME_CHECK = checker
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS =
 
 SRC_DIR = srcs/
 
