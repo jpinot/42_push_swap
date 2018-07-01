@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_ps.c                                          :+:      :+:    :+:   */
+/*   main_c.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/17 11:37:02 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/30 17:59:11 by jpinyot          ###   ########.fr       */
+/*   Created: 2018/04/17 11:49:01 by jpinyot           #+#    #+#             */
+/*   Updated: 2018/05/07 21:47:48 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,42 +37,33 @@ static int		ft_check_repeat(t_num *bgn, char **str)
 	return (1);
 }
 
-static int		ft_return_ps(t_num *bgn, char **str, int ac, int i)
-{
-	if (ft_check_repeat(bgn, str) == 0 || i == -1)
-	{
-		ft_dprintf(2, "Error\n");
-		if (ac == 2)
-			ft_strdel(str);
-		ft_del_num(&bgn);
-		return (-1);
-	}
-	if (ac == 2)
-		ft_strdel(str);
-	return (push_swap(bgn));
-}
-
-static int		ft_new_n_struct(t_num *num, char **str, int i)
+static t_num	*ft_new_n_struct(t_num *num, char **str, int i, int ac)
 {
 	t_num *bgn;
 
 	bgn = num;
-	if (ft_atoi_ps(str[i]) != -1)
-	{
-		if ((num = ft_lstnew_num(ft_atoi(str[0]), NULL)) == NULL)
-			return (-1);
-	}
-	else
-		return (-1);
 	while (str[++i])
 	{
 		if (ft_atoi_ps(str[i]) == -1)
-			return (-1);
+		{
+			i = -1;
+			break ;
+		}
 		if ((num->next = ft_lstnew_num(ft_atoi(str[i]), num)) == NULL)
-			return (-2);
+			return (NULL);
 		num = num->next;
 	}
-	return (i);
+	if (ft_check_repeat(bgn, str) == 0 || i == -1)
+	{
+		ft_dprintf(2, "Error\n");
+		if (ac == 2)
+			ft_deldstr(str);
+		ft_del_num(&bgn);
+		return (NULL);
+	}
+	if (ac == 2)
+		ft_deldstr(str);
+	return (bgn);
 }
 
 int				main(int ac, char **av)
@@ -81,7 +72,6 @@ int				main(int ac, char **av)
 	int		i;
 	t_num	*num;
 
-	i = ac;
 	if (ac < 2)
 		return (-1);
 	else if (ac == 2)
@@ -91,9 +81,10 @@ int				main(int ac, char **av)
 		str = av;
 		str++;
 	}
+	i = ft_atoi_ps(str[0]);
 	if ((num = ft_lstnew_num(ft_atoi(str[0]), NULL)) == NULL)
 		return (-1);
-	if ((i = ft_new_n_struct(num, str, 0)) == -2)
+	if (!(ft_new_n_struct(num, str, i, ac)))
 		return (-1);
-	return (ft_return_ps(num, str, ac, i));
+	return (push_swap(num));
 }

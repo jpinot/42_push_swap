@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 16:43:04 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/28 15:32:39 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/05/01 18:43:31 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ t_stack			*ft_pb(t_stack *a, t_stack *b, t_ret *ret)
 {
 	char	*del;
 
+	if (a->bgn == NULL)
+		return (a);
 	if (a->bgn->next == NULL)
 		ft_push_nn(a, b);
 	else if (b->bgn != NULL)
@@ -79,6 +81,8 @@ t_stack			*ft_pa(t_stack *a, t_stack *b, t_ret *ret)
 {
 	char	*del;
 
+	if (b->bgn == NULL)
+		return (a);
 	if (b->bgn->next == NULL)
 		ft_push_nn(b, a);
 	else if (a->bgn != NULL)

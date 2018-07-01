@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 16:50:16 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/20 17:32:17 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/05/06 21:42:54 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ t_stack			*ft_rrr(t_stack *a, t_ret *ret)
 {
 	char	*del;
 
-	a = ft_reverse(a);
-	a->s_b = ft_reverse(a->s_b);
+	if (a->bgn && a->bgn->next)
+		a = ft_reverse(a);
+	if (a->s_b->bgn && a->s_b->bgn->next)
+		a->s_b = ft_reverse(a->s_b);
 	del = ret->tp;
 	if (!(ret->tp = ft_strjoin(ret->tp, "rrr\n")))
 		return (NULL);

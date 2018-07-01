@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 16:52:15 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/20 17:34:25 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/05/01 18:53:18 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ t_stack	*ft_sa(t_stack *a, t_ret *ret)
 	t_num	*tmp;
 	char	*d;
 
+	if (a->bgn == NULL || a->bgn->next == NULL)
+		return (a);
 	tmp = a->bgn->next;
 	a->bgn->prev = tmp;
 	a->bgn->next = tmp->next;
@@ -36,6 +38,8 @@ t_stack	*ft_sb(t_stack *b, t_ret *ret)
 	t_num	*tmp;
 	char	*d;
 
+	if (b->bgn == NULL || b->bgn->next == NULL)
+		return (b);
 	tmp = b->bgn->next;
 	b->bgn->prev = tmp;
 	b->bgn->next = tmp->next;

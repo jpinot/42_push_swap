@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 16:51:39 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/20 17:32:51 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/05/06 21:42:30 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,14 @@ t_stack			*ft_ss(t_stack *a, t_ret *ret)
 {
 	char *del;
 
-	a = ft_swap(a);
-	a->s_b = ft_swap(a->s_b);
+	if (a->bgn && a->bgn->next)
+		a = ft_swap(a);
+	if (a->s_b->bgn && a->s_b->bgn->next)
+		a->s_b = ft_swap(a->s_b);
 	del = ret->tp;
 	if (!(ret->tp = ft_strjoin(ret->tp, "ss\n")))
 		return (NULL);
+	ft_strdel(&del);
 	ret->mov += 1;
 	return (a);
 }

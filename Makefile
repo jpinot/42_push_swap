@@ -6,7 +6,7 @@
 #    By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/14 22:43:59 by jpinyot           #+#    #+#              #
-#    Updated: 2018/04/30 16:54:53 by jpinyot          ###   ########.fr        #
+#    Updated: 2018/05/06 20:03:10 by jpinyot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ FUNC = ft_sort_num.c\
 	   ft_stack_new.c\
 	   ft_atoi_ps.c\
 	   ft_flag_new.c\
+	   ft_deldstr.c\
 
 MRG = ft_merge_func.c\
 	  ft_sort_top_a.c\

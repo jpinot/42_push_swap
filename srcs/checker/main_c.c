@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 11:49:01 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/30 17:59:09 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/05/26 15:58:46 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ static t_num	*ft_new_n_struct(t_num *num, char **str, int i, int ac)
 	{
 		ft_dprintf(2, "Error\n");
 		if (ac == 2)
-			ft_strdel(str);
-		ft_del_num(&num);
+			ft_deldstr(str);
+		ft_del_num(&bgn);
 		return (NULL);
 	}
 	if (ac == 2)
-		ft_strdel(str);
+		ft_deldstr(str);
 	return (bgn);
 }
 
@@ -70,27 +70,25 @@ int				main(int ac, char **av)
 {
 	char	**str;
 	int		i;
+	int		ac2;
 	t_flag	flag;
 	t_num	*num;
 
+	i = 1;
+	ac2 = ac;
 	if (ac < 2)
 		return (-1);
-	else if (ac == 2)
-		str = ft_strsplit(av[1], ' ');
-	else
+	else if (ac == 2 || ((i = ft_flag_new(&flag, av)) > 1 && av[i + 1] == NULL))
 	{
-		if ((i = ft_flag_new(&flag, av)) > 1 && av[i + 1] == NULL)
-			str = ft_strsplit(av[i], ' ');
-		else
-		{
-			str = av;
-			str += i;
-		}
+		ac2 = 2;
+		str = ft_strsplit(av[i], ' ');
 	}
+	else
+		str = (av + i);
 	i = ft_atoi_ps(str[0]);
 	if ((num = ft_lstnew_num(ft_atoi(str[0]), NULL)) == NULL)
 		return (-1);
-	if (!(ft_new_n_struct(num, str, i, ac)))
+	if (!(ft_new_n_struct(num, str, i, ac2)))
 		return (-1);
 	return (checker(num, flag));
 }

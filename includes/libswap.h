@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 19:15:07 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/30 14:52:13 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/05/06 20:05:49 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct	s_flag
 int				push_swap(t_num *bgn);
 int				checker(t_num *n, t_flag flag);
 
+void			ft_deldstr(char **s);
 void			ft_print_stack(t_stack *stk);
 void			ft_print_stack_c(t_stack *stk, char **str, int i, t_flag flag);
 void			ft_color_impl(t_stack *a, char **str, int i);

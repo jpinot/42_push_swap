@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_del_ret.c                                       :+:      :+:    :+:   */
+/*   ft_deldstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/10 18:21:42 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/05/06 22:08:02 by jpinyot          ###   ########.fr       */
+/*   Created: 2018/05/06 19:59:40 by jpinyot           #+#    #+#             */
+/*   Updated: 2018/05/14 17:06:00 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libswap.h"
 
-void	ft_del_ret(t_ret **lst)
+void	ft_deldstr(char **s)
 {
-	t_ret *tmp;
-	t_ret *l;
+	int i;
 
-	if (!(*lst))
-		return ;
-	l = *lst;
-	while (l)
+	i = -1;
+	if (s)
 	{
-		tmp = l->next;
-		ft_strdel(&(l->tp));
-		free(l);
-		l = tmp;
+		while (s[++i])
+			free(s[i]);
+		free(s);
+		s = NULL;
 	}
-	l = NULL;
 }

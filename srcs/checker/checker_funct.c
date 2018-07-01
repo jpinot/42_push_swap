@@ -6,7 +6,7 @@
 /*   By: jpinyot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/28 17:40:19 by jpinyot           #+#    #+#             */
-/*   Updated: 2018/04/30 16:36:49 by jpinyot          ###   ########.fr       */
+/*   Updated: 2018/05/26 16:13:40 by jpinyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,18 @@ int		ft_chkr_sort(t_stack *a)
 {
 	t_num *n;
 
-	n = a->bgn;
-	while (n->next)
+	if (a->bgn != NULL)
 	{
-		if (n->num > n->next->num)
-			return (0);
-		n = n->next;
+		n = a->bgn;
+		while (n->next)
+		{
+			if (n->num > n->next->num)
+				return (0);
+			n = n->next;
+		}
+		if (a->s_b->bgn == NULL)
+			return (1);
 	}
-	if (a->s_b->bgn == NULL)
-		return (1);
 	return (0);
 }
 
